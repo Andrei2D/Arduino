@@ -1,5 +1,5 @@
-#define zerO B00000000
 #include "Matrix8x8.h"
+#define zerO B00000000
 
   Matrix8x8::Matrix8x8()
   {
@@ -76,6 +76,15 @@
     for( int i = 0; i < 7; i ++ )
       if( octaMat [ i ] != mat.octaMat [ i ] ) return 1;
     return 0;
+  }
+
+  int Matrix8x8::operator= (const Matrix8x8& mat)
+  {
+    if(this == &mat) return 0;
+
+    for ( int i = 0; i <  8; i ++ ) 
+      octaMat [ i ] = mat [ i ];
+    return 1;
   }
 
   byte& Matrix8x8::operator[](int i)
