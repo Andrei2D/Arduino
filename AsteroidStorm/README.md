@@ -26,7 +26,7 @@ v0.5
 BUGS: 
 	- ledurile licaresc
 	
-MillisFix
+#MillisFix
 v0.1	
 	-am schimbat functia int checkDelay() in void checkDelay 
 	-am adaugat o variabila bool goodToGo
