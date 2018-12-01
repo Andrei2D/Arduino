@@ -6,6 +6,11 @@
 #define zerO B00000000
 #define DEF_DELAY 50
 
+ShipLasers :: ShipLasers (unsigned long currTime) 
+{
+  lastTime = currTime;
+  delayTime = DEF_DELAY;
+}
 
 void ShipLasers::update(unsigned long currTime)
 {

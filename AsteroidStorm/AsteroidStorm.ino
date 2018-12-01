@@ -2,16 +2,20 @@
 #include "JoiceStick.h"
 #include "SpaceShip.h"
 
-
 LedControl lc = LedControl(12, 11, 10, 1); //DIN, CLK, LOAD, No. DRIVER
+
+/*
+ * DE SCOS DELAY-URILE DIN JOYSTICK CPP
+ */
 
 JoiceStick Ctrl;
 SpaceShip Sheep;
+Matrix8x8 Mat;
 
 /*~~~SETUP~~~*/
 
-void mvSheepLeft () { Sheep.moveLeft(); };
-void mvSheepRight () { Sheep.moveRight(); };
+void mvSheepLeft () { Sheep.moveLeft(); }
+void mvSheepRight () { Sheep.moveRight(); }
 
 
 void setup()
@@ -21,17 +25,14 @@ void setup()
   lc.setIntensity(0, 0); // sets brightness (0~15 possible values)
   lc.clearDisplay(0);// clear screen
   
-  
-  Ctrl.initY ( mvSheepLeft, mvSheepRight);
-  
-  Ctrl.setDelay(125);
-  Sheep[6] |= B10100000;
-  Sheep[7] |= B11100000;
+  Ctrl.initH ( mvSheepLeft, mvSheepRight);
+  Ctrl.setDelay(150);
+
 }
 
 
 
 void loop() {
-  Ctrl.checkY();
-  Sheep.playOn(lc);
+    Ctrl.checkH();
+    Sheep.playOn(lc);
 }

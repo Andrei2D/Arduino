@@ -6,6 +6,7 @@
 #define LOWER_SHIP B11100000
 #define FAR_LEFT B10000000
 #define FAR_RIGHT B00000001
+#define zerO B00000000
 
 SpaceShip::SpaceShip()
 {
@@ -16,9 +17,12 @@ SpaceShip::SpaceShip()
 
 void SpaceShip::moveLeft()
 {
-  if  ( octaMat[7] & FAR_LEFT == 0 )
+  
+  byte positionStatus = octaMat [ 7 ] & FAR_LEFT;
+  if  ( positionStatus == zerO )
   {
      shLeft();
+     Serial.print("L");
      leftGunPos = leftGunPos << 1;
      rightGunPos = rightGunPos << 1;
   }
@@ -26,8 +30,11 @@ void SpaceShip::moveLeft()
 
 void SpaceShip::moveRight()
 {
-  if ( octaMat[7] & FAR_RIGHT == 0 )
+  
+ byte positionStatus = octaMat [ 7 ] & FAR_RIGHT;
+  if(  positionStatus == zerO )
   {
+     Serial.print("R");
      shRight();
      leftGunPos = leftGunPos >> 1;
      rightGunPos = rightGunPos >> 1;
