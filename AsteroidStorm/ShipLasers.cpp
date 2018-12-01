@@ -4,22 +4,26 @@
 #include <Arduino.h>
 
 #define zerO B00000000
-#define DEF_DELAY 50
+#define DEF_DELAY 25
 
-ShipLasers :: ShipLasers (unsigned long currTime) 
+ShipLasers :: ShipLasers () 
 {
   laserTracker = zerO;
-  lastTime = currTime;
+  lastTime = millis();
   delayTime = DEF_DELAY;
 }
 
-void ShipLasers::update(unsigned long currTime)
+void ShipLasers::update()
 {
-  if ( (laserTracker != zerO) && ( currTime - lastTime > delayTime ))
+  if ( (laserTracker != zerO))
     {
-      lastTime = currTime; 
-      laserTracker = laserTracker >> 1;
-      shUp();
+      currTime = millis();
+      if( currTime - lastTime >= delayTime )
+        {
+          lastTime = currTime; 
+          laserTracker = laserTracker >> 1;
+          shUp();
+        } 
     }
 }
 

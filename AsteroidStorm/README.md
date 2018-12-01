@@ -21,7 +21,7 @@
 ## Updates
 
 ### v0.4
-	-am adaugat clasele ShipLaser si Asteroids
+	-adaugat clasele ShipLaser si Asteroids
 	-rezolvat un bug in care nu-mi recunostea functiile de move ale clasei SpaceShip
 
 ### v0.5
@@ -31,22 +31,37 @@
 
 # MillisFix updates
 ### v0.1	
-	-am schimbat functia int checkDelay() in void checkDelay 
-	-am adaugat o variabila bool goodToGo
+	-schimbat functia int checkDelay() in void checkDelay 
+	-adaugat o variabila bool goodToGo
 		-este true atunci cand se poate executa ceva
 		-false cand inca nu a trecut timp mai mare sau egal cu delayTime de la ultima actiune
-	-am adaugat goodToGo un functiile checkHorizontal si checkVertical
+	-adaugat goodToGo un functiile checkHorizontal si checkVertical
 		-flow control care permit si verificarea isX si isY daca a trecut destul timp
 	BUGS:
 		-tot licare...
 
 ### v0.2
-	-am adaugat in clasa JoiceStick doua metode
+	-adaugat in clasa JoiceStick doua metode
 		-'isY with Delay' si 'check Horizontal with Delay'
 		-nu folosesc millis ci delay dupa citirea valorii 
 			analogice de la pin
-	-am schimbat metoda chemata de Ctrl in loop-ul din 
+	-schimbat metoda chemata de Ctrl in loop-ul din 
 		AsteroidStorm.ino cu cea adaugata
 	-nu mai licaresc LED-urile matricii
 
 	-WTF
+	
+### v0.3
+	-adaugat clasa PushButton
+		-clasa care foloseste millis() pentru delay
+	-adaugat clasa Laz in main
+	-adaugat functii de tras proiectile pe 2 butoane
+	Issues: -proiectilele nu mi misca destul de repede din cauza 
+		delay-ului din clasa JoiceStick
+	Idee: functia checkDelay trebuie pusa in interiorul if-ului care
+		afirma ca un buton este apasat si trebuie sa execute 
+		actiunea doar daca a trecut timpul necesar
+
+
+
+

@@ -7,11 +7,12 @@
 class ShipLasers : public Matrix8x8
 {
   byte laserTracker;
+  unsigned long currTime;
   unsigned long lastTime;
   unsigned long delayTime;  
 public:
-  ShipLasers(unsigned long);
-  void update(unsigned long);
+  ShipLasers();
+  void update();
   bool contact(Matrix8x8&);
   void addLaser(byte);
   void setDelay(unsigned long);

@@ -23,8 +23,6 @@ void PushButton::checkDelay()
   calcTime = currTime - lastTime;
   if( calcTime >= delayTime )
   {
-    Serial.print("Passed time :");
-    Serial.println(calcTime);
     goodToGo = true;
     lastTime = currTime;
   }
