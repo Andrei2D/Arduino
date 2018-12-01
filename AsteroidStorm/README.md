@@ -1,14 +1,14 @@
 # Joc matrice 8x8 Asteroid Storm
 
-## Clase existente in program : 
+ Clase existente in program : 
 
-### JoiceStick
+## JoiceStick
 	Clasa care se opereaza pe un modul joystick arduino. 
 	Scop : ofera posibilitatea de a  seta functii care sa fie activate 
 cand joystick-ul ajunge in pozitie sus, jos, stanga sau dreapta. 
 
 
-### Matrix8x8 
+## Matrix8x8 
 
 	Clasa care tine minte in vector de elemente de tip byte cu 
 operatori pe biti supraincarcati, functie de afisare pe matrice 
@@ -17,17 +17,17 @@ operatori pe biti supraincarcati, functie de afisare pe matrice
 afisat pe matricea de leduri 8x8
 
 
-v0.4
+### v0.4
 	-am adaugat clasele ShipLaser si Asteroids
 	-rezolvat un bug in care nu-mi recunostea functiile de move ale clasei SpaceShip
 
-v0.5
+### v0.5
 	- inlocuit delay cu millis in clasa JoiceStick
 BUGS: 
 	- ledurile licaresc
 	
 # MillisFix
-v0.1	
+### v0.1	
 	-am schimbat functia int checkDelay() in void checkDelay 
 	-am adaugat o variabila bool goodToGo
 		-este true atunci cand se poate executa ceva
@@ -37,7 +37,7 @@ v0.1
 BUGS:
 	-tot licare...
 
-v0.2
+### v0.2
 	-am adaugat in clasa JoiceStick doua metode
 		-'isY with Delay' si 'check Horizontal with Delay'
 		-nu folosesc millis ci delay dupa citirea valorii 
