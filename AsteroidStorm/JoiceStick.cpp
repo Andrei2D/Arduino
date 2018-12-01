@@ -26,7 +26,8 @@ JoiceStick::JoiceStick(int anlInputX, int anlInputY):joyX(anlInputX),joyY(anlInp
 
 void JoiceStick::resetVars()
 {
-  theDelay = 100;
+  delayTime = 150;
+  lastTime = millis();
   goLeft = NULL;
   goRight = NULL;
   goUp = NULL;
@@ -35,7 +36,21 @@ void JoiceStick::resetVars()
   pinMode( joyY, INPUT );
 }
 
-void JoiceStick::setDelay (int aDelay) { theDelay = aDelay;}
+void JoiceStick::setDelay (unsigned long aDelay) 
+{ 
+  delayTime = aDelay;
+}
+
+int JoiceStick::checkDelay()
+{
+  unsigned long currTime = millis();
+  if( currTime - lastTime > delayTime )
+  {
+    lastTime = currTime ;
+    return 1;
+  }
+  return 0;
+}
 
 ///HORIZONTAL
 void JoiceStick::initH (void (*left)(), void (*right)())
@@ -54,20 +69,25 @@ void JoiceStick::initV ( void (*down)(), void (*up)())
 
 int JoiceStick::isX () 
 {
-  int xx = analogRead(joyX);
-  delay(theDelay);
-  if( xx < 400 ) return 1;
-  if( xx > 600 ) return -1;
+  
+  if( checkDelay() == 1 )
+  {
+    int xx = analogRead(joyX);
+    if( xx < 400 ) return 1;
+    if( xx > 600 ) return -1;
+  }
   return 0;
 }
 
 
 int JoiceStick::isY () 
 {
-  int yy = analogRead(joyY);
-  delay(theDelay);
-  if( yy < 400 ) return 1;
-  if( yy > 600 ) return -1;
+  if(checkDelay() == 1)
+  {
+    int yy = analogRead(joyY);
+    if( yy < 400 ) return 1;
+    if( yy > 600 ) return -1;
+  }
   return 0;
 }
 

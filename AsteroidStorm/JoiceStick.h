@@ -22,14 +22,17 @@
      */
   void (*goLeft)(void), (*goRight)(void);
   void (*goUp)(void), (*goDown)(void);
-  int theDelay;
+
+  unsigned long lastTime;
+  unsigned long delayTime;
 
 public:
   
   JoiceStick();
   JoiceStick(int, int);
   
-  void setDelay (int aDelay);
+  void setDelay (unsigned long aDelay);
+  int checkDelay ();
   
    //Resetare pointeri catre functii la NULL si delay la 100
    
