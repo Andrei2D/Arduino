@@ -21,8 +21,7 @@ void SpaceShip::moveLeft()
   byte positionStatus = octaMat [ 7 ] & FAR_LEFT;
   if  ( positionStatus == zerO )
   {
-     shLeft();
-     Serial.print("L");
+     shLeft();;
      leftGunPos = leftGunPos << 1;
      rightGunPos = rightGunPos << 1;
   }
@@ -34,7 +33,6 @@ void SpaceShip::moveRight()
  byte positionStatus = octaMat [ 7 ] & FAR_RIGHT;
   if(  positionStatus == zerO )
   {
-     Serial.print("R");
      shRight();
      leftGunPos = leftGunPos >> 1;
      rightGunPos = rightGunPos >> 1;
