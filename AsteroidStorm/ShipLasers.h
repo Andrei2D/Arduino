@@ -6,6 +6,7 @@
 
 class ShipLasers : public Matrix8x8
 {
+  byte laserTracker;
   unsigned long lastTime;
   unsigned long delayTime;  
 public:

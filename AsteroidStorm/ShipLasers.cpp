@@ -8,15 +8,17 @@
 
 ShipLasers :: ShipLasers (unsigned long currTime) 
 {
+  laserTracker = zerO;
   lastTime = currTime;
   delayTime = DEF_DELAY;
 }
 
 void ShipLasers::update(unsigned long currTime)
 {
-  if ( currTime - lastTime > delayTime )
+  if ( (laserTracker != zerO) && ( currTime - lastTime > delayTime ))
     {
       lastTime = currTime; 
+      laserTracker = laserTracker >> 1;
       shUp();
     }
 }
@@ -24,6 +26,7 @@ void ShipLasers::update(unsigned long currTime)
 void ShipLasers::addLaser (byte lasPos)
 {
   octaMat [ 6 ] = lasPos;
+  laserTracker = laserTracker | B01000000;
 }
 
 bool ShipLasers::contact(Matrix8x8& alta)
