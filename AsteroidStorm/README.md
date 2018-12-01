@@ -16,6 +16,9 @@
 		Scop : ofera un model de lucru usor de modificat pentru 
 	a fi afisat pe matricea de leduri 8x8
 
+## etc..
+
+## Updates
 
 ### v0.4
 	-am adaugat clasele ShipLaser si Asteroids
@@ -25,7 +28,8 @@
 	- inlocuit delay cu millis in clasa JoiceStick
 	BUGS:	- ledurile licaresc
 	
-# MillisFix
+
+# MillisFix updates
 ### v0.1	
 	-am schimbat functia int checkDelay() in void checkDelay 
 	-am adaugat o variabila bool goodToGo
