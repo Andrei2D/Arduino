@@ -25,3 +25,14 @@ v0.5
 	- inlocuit delay cu millis in clasa JoiceStick
 BUGS: 
 	- ledurile licaresc
+	
+MillisFix
+v0.1	
+	-am schimbat functia int checkDelay() in void checkDelay 
+	-am adaugat o variabila bool goodToGo
+		-este true atunci cand se poate executa ceva
+		-false cand inca nu a trecut timp mai mare sau egal cu delayTime de la ultima actiune
+	-am adaugat goodToGo un functiile checkHorizontal si checkVertical
+		-flow control care permit si verificarea isX si isY daca a trecut destul timp
+BUGS:
+	-tot licare...

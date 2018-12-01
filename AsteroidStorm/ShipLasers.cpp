@@ -29,7 +29,7 @@ void ShipLasers::addLaser (byte lasPos)
 bool ShipLasers::contact(Matrix8x8& alta)
 {
   for ( int i = 0; i < 7; i ++ )
-    if( octaMat [ i ] & alta [ i ] != zerO)
+    if ( octaMat [ i ] & alta [ i ] != zerO)
     {
       octaMat [ i ] = zerO;
       return true;

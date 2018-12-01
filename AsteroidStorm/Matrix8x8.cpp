@@ -67,20 +67,20 @@
   bool  Matrix8x8::operator== (const Matrix8x8& mat)
   {
     for( int i = 0; i < 7; i ++ )
-      if( octaMat [ i ] != mat.octaMat [ i ] ) return 0;
+      if ( octaMat [ i ] != mat.octaMat [ i ] ) return 0;
     return 1;
   }  
   
   bool  Matrix8x8::operator!= (const Matrix8x8& mat)
   {
     for( int i = 0; i < 7; i ++ )
-      if( octaMat [ i ] != mat.octaMat [ i ] ) return 1;
+      if ( octaMat [ i ] != mat.octaMat [ i ] ) return 1;
     return 0;
   }
 
   int Matrix8x8::operator= (const Matrix8x8& mat)
   {
-    if(this == &mat) return 0;
+    if (this == &mat) return 0;
 
     for ( int i = 0; i <  8; i ++ ) 
       octaMat [ i ] = mat [ i ];
@@ -89,7 +89,7 @@
 
   byte& Matrix8x8::operator[](int i)
   {
-    if( i < 0 || i > 7 ) return;
+    if ( i < 0 || i > 7 ) return;
 
     return octaMat[i];
   }

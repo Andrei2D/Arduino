@@ -31,7 +31,7 @@ void SpaceShip::moveRight()
 {
   
  byte positionStatus = octaMat [ 7 ] & FAR_RIGHT;
-  if(  positionStatus == zerO )
+  if (  positionStatus == zerO )
   {
      shRight();
      leftGunPos = leftGunPos >> 1;
