@@ -30,7 +30,7 @@
 	
 
 # MillisFix updates
-### v0.1	
+### v1.1	
 	-schimbat functia int checkDelay() in void checkDelay 
 	-adaugat o variabila bool goodToGo
 		-este true atunci cand se poate executa ceva
@@ -40,7 +40,7 @@
 	BUGS:
 		-tot licare...
 
-### v0.2
+### v1.2
 	-adaugat in clasa JoiceStick doua metode
 		-'isY with Delay' si 'check Horizontal with Delay'
 		-nu folosesc millis ci delay dupa citirea valorii 
@@ -51,7 +51,7 @@
 
 	-WTF
 	
-### v0.3
+### v1.3
 	-adaugat clasa PushButton
 		-clasa care foloseste millis() pentru delay
 	-adaugat clasa Laz in main
@@ -61,7 +61,10 @@
 	Idee: functia checkDelay trebuie pusa in interiorul if-ului care
 		afirma ca un buton este apasat si trebuie sa execute 
 		actiunea doar daca a trecut timpul necesar
-
-
-
+### v1.4 
+	-REZOLVAT PROBLEMA cu LED-urile care licare
+	-adaugat verificarea delay-ului DUPA ce am citit directia data 
+		de joystick si INAINTE de a chema functia respectiva
+	-actualizat niste valori pentru delay-uri
+	-sters metoda care folosesc functia delay()
 

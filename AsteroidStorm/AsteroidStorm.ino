@@ -32,7 +32,7 @@ void setup()
   lc.setIntensity(0, 0); // sets brightness (0~15 possible values)
   lc.clearDisplay(0);// clear screen
 
-  Laz.setDelay(25);
+  Laz.setDelay(45);
   
   bLf.setAction (shootLeft);
   bRg.setAction (shootRight);
@@ -45,7 +45,7 @@ void setup()
 
 
 void loop() {
-    Ctrl.checkHwDelay();
+    Ctrl.checkH();
     bLf.onPress();
     bRg.onPress();
     Laz.update();

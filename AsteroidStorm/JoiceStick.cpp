@@ -27,7 +27,6 @@ JoiceStick::JoiceStick(int anlInputX, int anlInputY):joyX(anlInputX),joyY(anlInp
 void JoiceStick::resetVars()
 {
   delayTime = 150;
-  goodToGo = true;
   lastTime = millis();
   goLeft = NULL;
   goRight = NULL;
@@ -42,14 +41,15 @@ void JoiceStick::setDelay (unsigned long aDelay)
   delayTime = aDelay;
 }
 
-void JoiceStick::checkDelay()
+bool JoiceStick::checkDelay()
 {
   unsigned long currTime = millis();
   if ( currTime - lastTime > delayTime )
   {
     lastTime = currTime ;
-    goodToGo = true;
+    return true;
   }
+  return false;
 }
 
 ///HORIZONTAL
@@ -88,45 +88,21 @@ int JoiceStick::isY ()
 
 void JoiceStick::checkH()
 {
-  if (goodToGo)
-  {
+  
   int wh = isY();
   if ( goLeft == NULL || goRight == NULL || wh == 0) return;
   
-  if ( wh < 0 )  goLeft();
-  if ( wh > 0 )  goRight();
+  if ( wh < 0 && checkDelay() )  goLeft();
+  if ( wh > 0 && checkDelay() )  goRight();
 
-  goodToGo = false;
-  }
 }
 
 void JoiceStick::checkV()
 {
-  if(goodToGo)
-  {
+  
   int wh = isX();
   if (goLeft == NULL || goRight == NULL || wh == 0) return;
-  if ( wh < 0 )  goDown();
-  if ( wh > 0 )  goUp();
-  
-  goodToGo = false;
-  }
-}
+  if ( wh < 0 && checkDelay() )  goDown();
+  if ( wh > 0 && checkDelay() )  goUp();
 
-int JoiceStick::isYwDelay()
-{
-    int yy = analogRead(joyY);
-    delay(delayTime);
-    if ( yy < 400 ) return 1;
-    if ( yy > 600 ) return -1;
-    return 0;
-}
-
-void JoiceStick::checkHwDelay()
-{
-  int wh = isYwDelay();
-  if ( goLeft == NULL || goRight == NULL || wh == 0) return;
-
-  if ( wh < 0 )  goLeft();
-  if ( wh > 0 )  goRight();
 }

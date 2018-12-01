@@ -16,12 +16,6 @@
   const int joyX;
   const int joyY;
   
-     /*
-      * Variabila care e TRUE cand a trecut un timp mai mare 
-      *   sau egal decat delayTime de la ultima actiune
-      */
-  bool goodToGo;
-  
     /*
      * Pointeri catre functiile ce trebuie apelate cand se misca
      *  joystickul in anumite pozitii
@@ -38,7 +32,7 @@ public:
   JoiceStick(int, int);
   
   void setDelay (unsigned long aDelay);
-  void checkDelay ();
+  bool checkDelay ();
   
    //Resetare pointeri catre functii la NULL si delay la 100
    
@@ -58,11 +52,6 @@ public:
   ///Check HORIZONTAL
   void checkH();
   
-  /*
-   * Functii care folosesc delay in loc de millis
-   */
-  int isYwDelay();
-  void checkHwDelay();
 
 };
 

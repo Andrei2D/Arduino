@@ -1,6 +1,6 @@
 #include "PushButton.h"
 
-#define DEF_DEL 75
+#define DEF_DEL 100
 
 PushButton::PushButton (int aPin):buttonPin(aPin)
 {

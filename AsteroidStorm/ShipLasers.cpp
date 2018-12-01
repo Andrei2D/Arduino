@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 #define zerO B00000000
-#define DEF_DELAY 25
+#define DEF_DELAY 50
 
 ShipLasers :: ShipLasers () 
 {
