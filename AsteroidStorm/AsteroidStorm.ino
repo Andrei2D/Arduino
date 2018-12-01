@@ -33,6 +33,6 @@ void setup()
 
 
 void loop() {
-    Ctrl.checkH();
+    Ctrl.checkHwDelay();
     Sheep.playOn(lc);
 }

@@ -69,15 +69,10 @@ void JoiceStick::initV ( void (*down)(), void (*up)())
 
 int JoiceStick::isX () 
 {
-  
-  if (goodToGo)
-  {
     int xx = analogRead(joyX);
     if ( xx < 400 ) return 1;
     if ( xx > 600 ) return -1;
-    goodToGo = false;
-  }
-  return 0;
+    return 0;
 }
 
 
@@ -87,8 +82,7 @@ int JoiceStick::isY ()
     int yy = analogRead(joyY);
     if ( yy < 400 ) return 1;
     if ( yy > 600 ) return -1;
-    
-  return 0;
+    return 0;
 }
 
 
@@ -108,8 +102,31 @@ void JoiceStick::checkH()
 
 void JoiceStick::checkV()
 {
+  if(goodToGo)
+  {
   int wh = isX();
-  if (  goLeft == NULL || goRight == NULL || wh == 0) return;
+  if (goLeft == NULL || goRight == NULL || wh == 0) return;
   if ( wh < 0 )  goDown();
   if ( wh > 0 )  goUp();
+  
+  goodToGo = false;
+  }
+}
+
+int JoiceStick::isYwDelay()
+{
+    int yy = analogRead(joyY);
+    delay(delayTime);
+    if ( yy < 400 ) return 1;
+    if ( yy > 600 ) return -1;
+    return 0;
+}
+
+void JoiceStick::checkHwDelay()
+{
+  int wh = isYwDelay();
+  if ( goLeft == NULL || goRight == NULL || wh == 0) return;
+
+  if ( wh < 0 )  goLeft();
+  if ( wh > 0 )  goRight();
 }

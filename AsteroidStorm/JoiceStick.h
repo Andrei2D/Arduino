@@ -55,9 +55,14 @@ public:
   
   ///Check VERTICAL
   void checkV();
-  
   ///Check HORIZONTAL
   void checkH();
+  
+  /*
+   * Functii care folosesc delay in loc de millis
+   */
+  int isYwDelay();
+  void checkHwDelay();
 
 };
 

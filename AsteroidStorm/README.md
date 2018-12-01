@@ -36,3 +36,14 @@ v0.1
 		-flow control care permit si verificarea isX si isY daca a trecut destul timp
 BUGS:
 	-tot licare...
+
+v0.2
+	-am adaugat in clasa JoiceStick doua metode
+		-'isY with Delay' si 'check Horizontal with Delay'
+		-nu folosesc millis ci delay dupa citirea valorii 
+analogice de la pin
+	-am schimbat metoda chemata de Ctrl in loop-ul din 
+AsteroidStorm.ino cu cea adaugata
+	-nu mai licaresc LED-urile matricii
+
+	-WTF
