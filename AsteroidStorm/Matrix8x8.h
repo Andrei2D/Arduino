@@ -2,7 +2,7 @@
 
 #define MATRIX_8X8
 
-#include "LedControl.h"
+#include <LedControl.h>
 
 class Matrix8x8
 {
