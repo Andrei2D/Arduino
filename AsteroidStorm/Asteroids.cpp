@@ -77,7 +77,7 @@ byte Asteroids::genField (short howMany)
   return toGo;
 }
 
-void Asteroids::addMeteors (byte chosenOne)
+void Asteroids::addMeteors ()
 {
   short randAst = random(3);
   short howMany = 2 + diff + randAst;
