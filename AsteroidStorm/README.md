@@ -16,7 +16,7 @@
 		Scop : ofera un model de lucru usor de modificat pentru 
 	a fi afisat pe matricea de leduri 8x8
 
-## etc..
+## De adugat toate descrierile claselor si mutat Updates in README-ul de mai sus
 
 ## Updates
 
@@ -68,3 +68,20 @@
 	-actualizat niste valori pentru delay-uri
 	-sters metoda care folosesc functia delay()
 
+### v1.5
+	Terminat clasa asteroid
+	-creat functie de generat 2^k pentru masca de biti
+	-adaugat functie care genereaza asteroizi: *genField(short howMany)*
+	Idee: 	Se genereaza intr-un byte atatia '1' cat se dau ca parametru.
+			Se porneste cu B00000000. Se creeaza masca de putere random si se adauga bitul
+				daca nu exista deja, adaugandu-se howMany biti.
+			Pentru numere mai mici ca 4 se genereaza normal, pentru numere mai mari 
+				se genereaza 8-howMany asteroizi apoi se neaga. Pentru 8 se returneaza 255.
+	-functie care genereaza asteroizi in functie de dificultate 
+	Idee: Sunt 3 dificultati: EASY, MEDIUM, HARD
+			Pentru EASY se genereaza 2, 3 sau 4 asteroizi
+			Pentru MEDIUM se genereaza 4, 5 sau 6 asteroizi
+			Pentru HARD se genereaza 6, 7 sau 8 asteroizi
+		Calculul pentru generat este : 2 + diff + rand
+			unde diff e dificultatea cu valori intre 0 si 2
+				rand e un numar random intre 1 si 3 (pentru diversitate)
