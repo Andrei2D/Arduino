@@ -2,13 +2,7 @@
 
 #define JoiceStick_h 
 
-#include <avr/pgmspace.h>
-
-#if (ARDUINO >= 100)
 #include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
 ///Some includes so there is no " 'A0' was not delcared " error
 
   class JoiceStick

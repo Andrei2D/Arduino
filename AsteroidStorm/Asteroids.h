@@ -16,7 +16,7 @@ class Asteroids : public Matrix8x8
   void update();
   byte intToByte(int);
   byte genField (short);
-  void addMeteors (byte);
+  void addMeteors ();
   
 };
 
