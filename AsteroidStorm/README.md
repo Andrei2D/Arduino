@@ -85,3 +85,7 @@
 		Calculul pentru generat este : 2 + diff + rand
 			unde diff e dificultatea cu valori intre 0 si 2
 				rand e un numar random intre 1 si 3 (pentru diversitate)
+### v1.6
+	-adaugat clasa LeCeDe
+
+	
