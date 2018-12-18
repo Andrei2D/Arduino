@@ -88,4 +88,7 @@
 ### v1.6
 	-adaugat clasa LeCeDe
 
+### v1.7
+	-clasa asteroizi + collide laser
+	-functie adunat punctaj
 	

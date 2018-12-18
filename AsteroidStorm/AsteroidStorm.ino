@@ -15,7 +15,7 @@ Matrix8x8 Mat;
 ShipLasers Laz;
 PushButton bLf(2), bRg(3);
 Asteroids myAst;
-LeCeDe LCD(12,13,8,9,10,11);
+///LeCeDe LCD(12,13,8,9,10,11);
 
 /*~~~SETUP~~~*/
 
@@ -45,50 +45,20 @@ void setup()
   Ctrl.initH ( mvSheepLeft, mvSheepRight);
   Ctrl.setDelay(120);
 
-  pinMode(13,OUTPUT);
-
-
-  LCD.setFromPos(0,1, "Alone in this");
-  LCD.setFromPos(1,3,"COFFE SHOP");
-  LCD.printStrings();
 
 }
 
+int cevaScor = 0;
 
-/*
 void loop() {
     Ctrl.checkH();
     bLf.onPress();
     bRg.onPress();
     Laz.update();
+    Laz.contact(myAst,cevaScor);
+    myAst.addMeteors();
 
-    Mat = Sheep | Laz;
+    Mat = Sheep | Laz | myAst;
     Mat.playOn(lc);
 }
 
-short cateFacem = 2;
-
-void loop ()
-{
-  myAst.setDiff(0);
-  byte myByte;
-  for(int i=1; i<=8; i++)
-  {
-    Serial.print("\t#");
-    Serial.println(i);
-    
-    for(int j=1; j<= 3; j++)
-    { 
-    myByte = myAst.genField(i);
-    Serial.println(myByte,BIN);
-    delay(1000);
-    }
-  }
-  delay(3000);
-}
-*/
-
-void loop ()
-{
-
-}

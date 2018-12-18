@@ -1,5 +1,6 @@
 #include "Asteroids.h"
 #define zerO B00000000
+#define DEF_DELAY 1500
 
 /*
   Dificultati: 
@@ -11,6 +12,8 @@ Asteroids::Asteroids()
 {
   diff = 0;
   speed = 1;
+  lastTime = millis();
+  delayTime = DEF_DELAY;
 }
 
 Asteroids::Asteroids(short theDifficulty = 0, short theSpeed = 1)
@@ -79,8 +82,14 @@ byte Asteroids::genField (short howMany)
 
 void Asteroids::addMeteors ()
 {
+   currTime = millis();
+      if( currTime - lastTime >= delayTime )
+        {
+          lastTime = currTime; 
+
   short randAst = random(3);
   short howMany = 2 + diff + randAst;
   shDown();
   octaMat[0] = genField ( howMany );
+        }
 }

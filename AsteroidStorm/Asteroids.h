@@ -8,6 +8,9 @@ class Asteroids : public Matrix8x8
 {
   short diff;
   short speed;
+  unsigned long currTime;
+  unsigned long lastTime;
+  unsigned long delayTime;
  public:
   Asteroids();
   Asteroids(short,short);
@@ -17,7 +20,7 @@ class Asteroids : public Matrix8x8
   byte intToByte(int);
   byte genField (short);
   void addMeteors ();
-  
+
 };
 
 #endif ///ASTEROIDS_H

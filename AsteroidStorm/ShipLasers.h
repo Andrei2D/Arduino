@@ -13,7 +13,8 @@ class ShipLasers : public Matrix8x8
 public:
   ShipLasers();
   void update();
-  bool contact(Matrix8x8&);
+  int howMuchOnes(byte toDisecate);
+  void contact(Matrix8x8&,int&);
   void addLaser(byte);
   void setDelay(unsigned long);
   void setDelay(int);
