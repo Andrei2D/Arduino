@@ -2,7 +2,7 @@
 
 #define LECEDE_H
 
-#include <LiquidCrystal.h>
+#include "LiquidCrystal.h"
 #include <Arduino.h>
 #include <string.h>
 #define MAX_WIDTH_LCD 16
@@ -12,7 +12,7 @@ class LeCeDe: public LiquidCrystal
 {
     char leStrings[2][MAX_WIDTH_LCD + 1];
 public:
-    LeCeDe(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t , uint8_t);
+    LeCeDe(uint8_t Res, uint8_t Enb, uint8_t de0, uint8_t de1, uint8_t de2, uint8_t de3);
 
     void defHW();
     void printStrings();

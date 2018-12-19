@@ -1,3 +1,10 @@
 
 AsteroidStorm/*.vscode
 AsteroidStorm/Fritzing/
+
+
+AsteroidStorm/UtilitaryMecanics/
+AsteroidStorm/GameMecanics/
+AsteroidStorm/GameMech.h
+AsteroidStorm/UtilityMech.h
+

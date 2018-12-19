@@ -6,7 +6,7 @@
 #include "Asteroids.h"
 #include "LeCeDe.h"
 #include "MillisWait.h"
-LedControl lc = LedControl(7,6,5,1); //DIN, CLK, LOAD, No. DRIVER
+LedControl lc = LedControl(6,5,4,1); //DIN, CLK, LOAD, No. DRIVER
 
 
 JoiceStick Ctrl;
@@ -15,7 +15,7 @@ Matrix8x8 Mat;
 ShipLasers Laz;
 PushButton bLf(2), bRg(3);
 Asteroids myAst;
-///LeCeDe LCD(12,13,8,9,10,11);
+LeCeDe LCD(12,11,10,9,8,7);
 
 /*~~~SETUP~~~*/
 
@@ -44,9 +44,10 @@ void setup()
 
   Ctrl.initH ( mvSheepLeft, mvSheepRight);
   Ctrl.setDelay(120);
-
-
+  LCD.setString(0,"Score: ");
 }
+
+
 
 int cevaScor = 0;
 
@@ -58,6 +59,11 @@ void loop() {
     Laz.update();
     Laz.contact(myAst,cevaScor);
     myAst.addMeteors();
+
+    char sirPtNumar[10];
+    itoa(cevaScor,sirPtNumar,20);
+    LCD.setString(1,sirPtNumar);
+    LCD.printStrings();
 
     Mat = Sheep | Laz | myAst;
     Mat.playOn(lc);
