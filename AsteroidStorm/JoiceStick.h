@@ -2,8 +2,10 @@
 
 #define JoiceStick_h 
 
+
 #include <Arduino.h>
 ///Some includes so there is no " 'A0' was not delcared " error
+#include "MillisWait.h"
 
   class JoiceStick
   {
@@ -17,8 +19,7 @@
   void (*goLeft)(void), (*goRight)(void);
   void (*goUp)(void), (*goDown)(void);
 
-  unsigned long lastTime;
-  unsigned long delayTime;
+  MillisWait joyWait;
 
 public:
   
@@ -26,7 +27,6 @@ public:
   JoiceStick(int, int);
   
   void setDelay (unsigned long aDelay);
-  bool checkDelay ();
   
    //Resetare pointeri catre functii la NULL si delay la 100
    

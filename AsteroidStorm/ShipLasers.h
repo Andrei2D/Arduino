@@ -3,13 +3,12 @@
 #define SHIPLASERS_H
 
 #include "Matrix8x8.h"
+#include "MillisWait.h"
 
 class ShipLasers : public Matrix8x8
 {
   byte laserTracker;
-  unsigned long currTime;
-  unsigned long lastTime;
-  unsigned long delayTime;  
+  MillisWait lazWait;  
 public:
   ShipLasers();
   void update();
@@ -17,7 +16,6 @@ public:
   void contact(Matrix8x8&,int&);
   void addLaser(byte);
   void setDelay(unsigned long);
-  void setDelay(int);
   void resetDelay();
 };
 

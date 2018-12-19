@@ -6,7 +6,7 @@
 #include "Asteroids.h"
 #include "LeCeDe.h"
 
-LedControl lc = LedControl(12, 11, 10, 1); //DIN, CLK, LOAD, No. DRIVER
+LedControl lc = LedControl(7,5,6,1); //DIN, CLK, LOAD, No. DRIVER
 
 
 JoiceStick Ctrl;
@@ -61,4 +61,3 @@ void loop() {
     Mat = Sheep | Laz | myAst;
     Mat.playOn(lc);
 }
-

@@ -3,14 +3,13 @@
 #define ASTEROIDS_H
 
 #include "Matrix8x8.h"
+#include "MillisWait.h"
 
 class Asteroids : public Matrix8x8
 {
   short diff;
   short speed;
-  unsigned long currTime;
-  unsigned long lastTime;
-  unsigned long delayTime;
+  MillisWait astWait;
  public:
   Asteroids();
   Asteroids(short,short);
@@ -20,6 +19,7 @@ class Asteroids : public Matrix8x8
   byte intToByte(int);
   byte genField (short);
   void addMeteors ();
+  void setDelay(unsigned long aDelay);
 
 };
 

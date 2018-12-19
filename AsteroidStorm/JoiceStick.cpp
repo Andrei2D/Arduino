@@ -1,5 +1,6 @@
 #include "JoiceStick.h"
 
+#define DEF_DELAY 150
 /*
  * COUNTERINTUITIVE, BUT:
  *        X(VRx) IS FOR VERTICAL
@@ -26,8 +27,7 @@ JoiceStick::JoiceStick(int anlInputX, int anlInputY):joyX(anlInputX),joyY(anlInp
 
 void JoiceStick::resetVars()
 {
-  delayTime = 150;
-  lastTime = millis();
+  joyWait.setDelay(DEF_DELAY);
   goLeft = NULL;
   goRight = NULL;
   goUp = NULL;
@@ -38,18 +38,7 @@ void JoiceStick::resetVars()
 
 void JoiceStick::setDelay (unsigned long aDelay) 
 { 
-  delayTime = aDelay;
-}
-
-bool JoiceStick::checkDelay()
-{
-  unsigned long currTime = millis();
-  if ( currTime - lastTime > delayTime )
-  {
-    lastTime = currTime ;
-    return true;
-  }
-  return false;
+  joyWait.setDelay (aDelay);
 }
 
 ///HORIZONTAL
@@ -91,9 +80,9 @@ void JoiceStick::checkH()
   
   int wh = isY();
   if ( goLeft == NULL || goRight == NULL || wh == 0) return;
-  
-  if ( wh < 0 && checkDelay() )  goLeft();
-  if ( wh > 0 && checkDelay() )  goRight();
+  joyWait.isOk();
+  if ( wh < 0 && joyWait.isOk() )  goLeft();
+  if ( wh > 0 && joyWait.isOk() )  goRight();
 
 }
 
@@ -102,7 +91,7 @@ void JoiceStick::checkV()
   
   int wh = isX();
   if (goLeft == NULL || goRight == NULL || wh == 0) return;
-  if ( wh < 0 && checkDelay() )  goDown();
-  if ( wh > 0 && checkDelay() )  goUp();
+  if ( wh < 0 && joyWait.isOk() )  goDown();
+  if ( wh > 0 && joyWait.isOk() )  goUp();
 
 }

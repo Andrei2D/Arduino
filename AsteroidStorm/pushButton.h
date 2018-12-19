@@ -2,6 +2,7 @@
 
 #define BUTTON_H
 
+#include "MillisWait.h"
 #include <Arduino.h>
 
 class PushButton
@@ -10,14 +11,11 @@ class PushButton
   void (*doIt)(void);
 
   bool goodToGo;
-  unsigned long delayTime;
-  unsigned long lastTime;
-
-  unsigned long currTime, calcTime;
+  MillisWait btnWait;
 public:
   PushButton (int);
   void setDelay(unsigned long);
-  void checkDelay();
+  bool isPressed();
   void onPress();
   void setAction(void (*toDO)(void));
 };

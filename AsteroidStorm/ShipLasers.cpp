@@ -9,21 +9,15 @@
 ShipLasers :: ShipLasers () 
 {
   laserTracker = zerO;
-  lastTime = millis();
-  delayTime = DEF_DELAY;
+  lazWait.setDelay(DEF_DELAY);
 }
 
 void ShipLasers::update()
 {
-  if ( (laserTracker != zerO))
+  if ( (laserTracker != zerO) && lazWait.isOk())
     {
-      currTime = millis();
-      if( currTime - lastTime >= delayTime )
-        {
-          lastTime = currTime; 
-          laserTracker = laserTracker >> 1;
-          shUp();
-        } 
+        laserTracker = laserTracker >> 1;
+        shUp();
     }
 }
 
@@ -61,16 +55,11 @@ void ShipLasers::contact(Matrix8x8& asteroMat, int& theScore)
 
 void ShipLasers::setDelay(unsigned long aDelay)
 {
-  delayTime = aDelay;
+  lazWait.setDelay (aDelay) ;
 }
 
-void ShipLasers::setDelay(int aDelay)
-{
-  unsigned long okDelay = (unsigned long)aDelay;
-  delayTime = okDelay;
-}
 
 void ShipLasers::resetDelay() 
 {
-  delayTime = DEF_DELAY;
+  lazWait.setDelay (DEF_DELAY);
 }
