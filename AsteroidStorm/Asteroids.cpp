@@ -24,10 +24,12 @@ Asteroids::Asteroids(short theDifficulty = 0, short theSpeed = 1)
 void Asteroids::raiseDiff()
 {
   if(diff < 2) diff ++;
+
 }
-void Asteroids::resetDiff()
+
+void Asteroids::setDiff(unsigned long aDiff)
 {
-  diff = 0;
+  diff = aDiff;
 }
 
 byte Asteroids::intToByte(int uglyInt)

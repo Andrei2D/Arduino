@@ -31,13 +31,14 @@ void shootLeft() { Laz.addLaser ( Sheep.leftGun() ); }
 void shootRight() { Laz.addLaser ( Sheep.rightGun() ); }
 
 
+int lives = 3;
+
 void initGame()
 {
   Laz.clearMatrix();
   myAst.clearMatrix();
 
   Laz.setDelay(70);
-  myAst.resetDiff();
   
   bLf.setAction (shootLeft);
   bRg.setAction (shootRight);
@@ -48,7 +49,8 @@ void initGame()
   Ctrl.initH ( mvSheepLeft, mvSheepRight);
   Ctrl.setDelay(120);
 
-  LCD.setString(0,"Score: ");
+  LCD.setString(0,"     Score: ");
+  LCD.setString(1,"                ");
 }
 
 int cevaScor = 0;
@@ -69,7 +71,8 @@ void Exit()
 
 void theActualGame() {
     
-    if(diffRaise.isOk()) myAst.raiseDiff();
+    
+    myAst.setDiff(lives);
 
     Ctrl.checkH();
     bLf.onPress();
@@ -88,7 +91,7 @@ void theActualGame() {
 
     char sirPtNumar[10];
     itoa(cevaScor,sirPtNumar,10);
-    LCD.setString(1,sirPtNumar);
+    LCD.setFromPos(1,5,sirPtNumar);
 
     Mat = Sheep | Laz | myAst;
 }
@@ -150,12 +153,30 @@ byte anX[] = {  B01000010,
 
 Matrix8x8 theX;
 
+
 void gameOverAnimation()
 {
     theX = anX;
-    LCD.setString(0,"#  GAME OVER!  #");
-    LCD.setString(1,"Replay?    Exit?");
+    if(lives > 0) 
+    {
+    LCD.setString(0,"You died        ");
+    LCD.setString(1,"Lives left:     "); 
+    char auxMat[17];
+    itoa(lives,auxMat,10);
+    LCD.setFromPos(1,13,auxMat);
+    gameOver = false;
+    }
+    else
+    {
+    LCD.setString(0,"#     GAME     #");
+    LCD.setString(1,"##    OVER!   ##");
+    myMenu = true;
+    lives = 3;
+    }
+    LCD.printStrings();
     Mat = Sheep | theX;
+    Mat.playOn(lc);
+    delay(2000);
 }
 
 /*~~~SETUP~~~*/
@@ -194,10 +215,10 @@ else
         if(gameOver)
         {
             cevaScor = 0;
+            lives--;
             gameOverAnimation();
-            
-            if(bRg.isPressed()) Exit();
-            if(bLf.isPressed()) Replay();
+            if(lives > 0) initGame();
+            if(lives == 3 && myMenu ) Mat.clearMatrix();
         }
         else
             theActualGame();

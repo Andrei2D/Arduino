@@ -15,7 +15,7 @@ class Asteroids : public Matrix8x8
   Asteroids(short,short);
   byte twoPower(short);
   void raiseDiff();
-  void resetDiff();
+  void setDiff(unsigned long aDiff);
   void update();
   byte intToByte(int);
   byte genField (short);
