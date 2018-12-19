@@ -92,3 +92,8 @@
 	-clasa asteroizi + collide laser
 	-functie adunat punctaj
 	
+### v1.8
+	-actualizat pini pentru compatibilitate Arduino NANO
+	
+### v1.9
+	-Matrice si Display simultan
