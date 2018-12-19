@@ -1,11 +1,11 @@
 #include "PushButton.h"
 
-#define DEF_DEL 100
+#define DEF_BTN_DELAY 100
 
 PushButton::PushButton (int aPin):buttonPin(aPin)
 {
   pinMode (buttonPin, INPUT);
-  btnWait.setDelay(DEF_DEL);
+  btnWait.setDelay(DEF_BTN_DELAY);
   goodToGo = true;
   doIt = NULL;
 }

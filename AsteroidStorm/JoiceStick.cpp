@@ -1,6 +1,6 @@
 #include "JoiceStick.h"
 
-#define DEF_DELAY 150
+#define DEF_JOY_DELAY 150
 /*
  * COUNTERINTUITIVE, BUT:
  *        X(VRx) IS FOR VERTICAL
@@ -27,7 +27,7 @@ JoiceStick::JoiceStick(int anlInputX, int anlInputY):joyX(anlInputX),joyY(anlInp
 
 void JoiceStick::resetVars()
 {
-  joyWait.setDelay(DEF_DELAY);
+  joyWait.setDelay(DEF_JOY_DELAY);
   goLeft = NULL;
   goRight = NULL;
   goUp = NULL;
@@ -80,7 +80,6 @@ void JoiceStick::checkH()
   
   int wh = isY();
   if ( goLeft == NULL || goRight == NULL || wh == 0) return;
-  joyWait.isOk();
   if ( wh < 0 && joyWait.isOk() )  goLeft();
   if ( wh > 0 && joyWait.isOk() )  goRight();
 

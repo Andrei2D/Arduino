@@ -1,12 +1,12 @@
-#include "LedControl.h" //  need the library
+#include "LedControl.h" 
 #include "JoiceStick.h"
 #include "SpaceShip.h"
 #include "PushButton.h"
 #include "ShipLasers.h"
 #include "Asteroids.h"
 #include "LeCeDe.h"
-
-LedControl lc = LedControl(7,5,6,1); //DIN, CLK, LOAD, No. DRIVER
+#include "MillisWait.h"
+LedControl lc = LedControl(7,6,5,1); //DIN, CLK, LOAD, No. DRIVER
 
 
 JoiceStick Ctrl;
@@ -51,6 +51,7 @@ void setup()
 int cevaScor = 0;
 
 void loop() {
+    MillisWait::readTime();
     Ctrl.checkH();
     bLf.onPress();
     bRg.onPress();

@@ -4,7 +4,6 @@
 
 
 #include <Arduino.h>
-///Some includes so there is no " 'A0' was not delcared " error
 #include "MillisWait.h"
 
   class JoiceStick

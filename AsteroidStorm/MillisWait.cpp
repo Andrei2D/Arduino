@@ -4,6 +4,7 @@
     MillisWait::MillisWait()
     {
         theDelay = THE_DEF_DELAY;
+        readTime();
         lastTime = millis();
     }
 
@@ -22,6 +23,9 @@
     bool MillisWait::isOk ()
     {
        if ( currentTime - lastTime > theDelay)
+            {
+            lastTime = currentTime;
             return true;
+            }
         return false;
     }

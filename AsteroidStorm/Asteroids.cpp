@@ -1,6 +1,6 @@
 #include "Asteroids.h"
 #define zerO B00000000
-#define DEF_DELAY 1500
+#define DEF_AST_DELAY 1500
 
 /*
   Dificultati: 
@@ -12,7 +12,7 @@ Asteroids::Asteroids()
 {
   diff = 0;
   speed = 1;
-  astWait.setDelay(DEF_DELAY);
+  astWait.setDelay(DEF_AST_DELAY);
 }
 
 Asteroids::Asteroids(short theDifficulty = 0, short theSpeed = 1)
