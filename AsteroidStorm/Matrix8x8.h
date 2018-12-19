@@ -27,6 +27,7 @@ public:
   bool  operator== (const Matrix8x8&);
   bool  operator!= (const Matrix8x8&);
   int operator= (const Matrix8x8&);
+  int operator= (const byte Mat[]);
   byte& operator[](int i);
 
   void playOn(LedControl&);

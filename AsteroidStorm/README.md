@@ -97,3 +97,10 @@
 	
 ### v1.9
 	-Matrice si Display simultan
+
+### v2.0
+	-prezentabil dar nu merge calumea
+	-dificultate creste o data cu timul
+	-separat pe stari de joc
+	-alte..
+

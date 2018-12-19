@@ -21,9 +21,13 @@ Asteroids::Asteroids(short theDifficulty = 0, short theSpeed = 1)
   speed = theSpeed;
 }
 
-void Asteroids::setDiff(short newDiff)
+void Asteroids::raiseDiff()
 {
-  diff = newDiff;
+  if(diff < 2) diff ++;
+}
+void Asteroids::resetDiff()
+{
+  diff = 0;
 }
 
 byte Asteroids::intToByte(int uglyInt)
@@ -79,13 +83,14 @@ byte Asteroids::genField (short howMany)
   return toGo;
 }
 
-void Asteroids::addMeteors ()
+void Asteroids::addMeteors (bool& gameOver)
 {
   
 if(astWait.isOk())
     {
   short randAst = random(3);
   short howMany = 2 + diff + randAst;
+  if (octaMat[7] != zerO) gameOver = true;
   shDown();
   octaMat[0] = genField ( howMany );
     }

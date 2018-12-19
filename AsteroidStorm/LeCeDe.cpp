@@ -10,8 +10,8 @@
     
     void LeCeDe::defHW()
     {
-        strcpy(leStrings[0],"     Hello      ");
-        strcpy(leStrings[1],"     world!     ");
+        strcpy(leStrings[0]," Asteroid      ");
+        strcpy(leStrings[1],"        Storm   ");
     }
 
     void LeCeDe::printStrings()

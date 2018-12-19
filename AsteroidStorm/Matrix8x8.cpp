@@ -87,6 +87,14 @@
     return 1;
   }
 
+  int Matrix8x8::operator= (const byte Mat[])
+  {
+
+    for ( int i = 0; i <  8; i ++ ) 
+      octaMat [ i ] = Mat [ i ];
+    return 1;
+  }
+
   byte& Matrix8x8::operator[](int i)
   {
     if ( i < 0 || i > 7 ) return;

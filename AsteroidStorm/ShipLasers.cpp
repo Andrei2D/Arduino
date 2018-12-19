@@ -5,11 +5,13 @@
 
 #define zerO B00000000
 #define DEF_DELAY 50
+#define DEF_PEN 750
 
 ShipLasers :: ShipLasers () 
 {
   laserTracker = zerO;
   lazWait.setDelay(DEF_DELAY);
+  penaltyWait.setDelay(0);
 }
 
 void ShipLasers::update()
@@ -17,15 +19,20 @@ void ShipLasers::update()
   if ( (laserTracker != zerO) && lazWait.isOk())
     {
         laserTracker = laserTracker >> 1;
+        if(octaMat[0] != zerO) penaltyWait.setDelay(DEF_PEN);
         shUp();
     }
 }
 
 void ShipLasers::addLaser (byte lasPos)
 {
+  if(penaltyWait.isOk())
+  {
   octaMat [ 6 ] = lasPos;
   laserTracker = laserTracker | B01000000;
-}
+  penaltyWait.setDelay(0);
+  }
+} 
 
 int ShipLasers::howMuchOnes ( byte toDisecate )
 {

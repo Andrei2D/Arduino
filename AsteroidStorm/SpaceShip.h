@@ -20,6 +20,7 @@ class SpaceShip : public Matrix8x8
   byte rightGun();
 
   void resetPosition();
+  void didCollide(bool& gameOver, Matrix8x8& whatMat);
 
 };
 

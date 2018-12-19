@@ -14,11 +14,12 @@ class Asteroids : public Matrix8x8
   Asteroids();
   Asteroids(short,short);
   byte twoPower(short);
-  void setDiff(short);
+  void raiseDiff();
+  void resetDiff();
   void update();
   byte intToByte(int);
   byte genField (short);
-  void addMeteors ();
+  void addMeteors (bool& gameOver);
   void setDelay(unsigned long aDelay);
 
 };

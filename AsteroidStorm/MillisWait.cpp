@@ -8,6 +8,14 @@
         lastTime = millis();
     }
 
+    MillisWait::MillisWait(unsigned long aDelay)
+    {
+        theDelay = aDelay;
+        readTime();
+        lastTime = millis();
+    }
+
+
     unsigned long MillisWait::currentTime = millis();
     
     void MillisWait::setDelay(unsigned long aDelay)

@@ -8,7 +8,7 @@
 class ShipLasers : public Matrix8x8
 {
   byte laserTracker;
-  MillisWait lazWait;  
+  MillisWait lazWait, penaltyWait;  
 public:
   ShipLasers();
   void update();
