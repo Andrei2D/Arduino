@@ -13,11 +13,56 @@
 		Clasa care tine minte in vector de elemente de tip byte 
 	cu operatori pe biti supraincarcati, functie de afisare pe matrice 
 	(printr-un parametru de tip LedControl)
-		Scop : ofera un model de lucru usor de modificat pentru 
-	a fi afisat pe matricea de leduri 8x8
+		Scop : ofera un camp de lucru usor de modificat pentru a simula
+	comportamente iar mai apoi pentru a fi afisat pe matricea de leduri 8x8.
 
-## De adugat toate descrierile claselor si mutat Updates in README-ul de mai sus
+## MillisWait
+	Clasa care se ocupa cu flow-control-ul conditionat de delay-uri. In termeni simpli, intarzie 
+	anumite evenimente fara a ingheta executia intregului program.
+	
+	
+## LeCeDe
+	Clasa ce mosteneste clasa LiquidCristal si retine 2 siruri de lungime 17 
+	(Lungimea unui rand LCD  + '\0') ce ofera metode de prelucare si afisare 
+	a celor 2 siruri pe un display LCD.
+	
+## PushButton 
+	Clasa ce se ocupa de comportamentul unui buton si executa o functie de tip void 
+	fara parametrii atunci cand acesta este apasat, in functie de un delay.
+	
+## SpaceShip 
+	Clasa descendenta din Matrix8x8 ce simuleaza o naveta pe ultimele 2 linii
+	ale acesteia si contine functii de miscare care o restrictioneaza la 
+	dimensiunile matricei.
+	Consista din masca modelul navetei si pozitiile armelor, memorate in 2 
+	elemente de tip byte ce sunt actualizate o data cu miscarile matricei. 
+	O functie importanta a acestei clase este functie didCollide(bool&,Matrix8x8&)
+	care verifica suprapunerea navetei cu o alta matrice, scriind 'true'
+	in parametrul de tip bool in caz afirmativ.
+	
+## ShipLaser
+	Clasa descendenta din Matrix8x8 ce simuleaza laserele trase de naveta.
+	Consista dintr-un element de tip byte ce simuleaza liniile ce au lasere,
+	2 elemente de tip MillisWait (unul pentru intervalul de tip intre care se 
+	pot trage 2 lasere si unul pentru penalizare). Metodele principala sunt 
+	void update() (ce shifteaza in sus matricea atunci cand laserTracker nu e 0)
+	si void contact(Matrix8x8&,int&) care creste elementul de tip int atunci cand 
+	elementele intra in contact cu elementele altei matrici, stergandu-le pe 
+	ambele dupa.
 
+## Asteroids
+	Clasa descendenta din Matrix8x8 ce simuleaza un camp de asteroizi. Consista din 
+	doua elemente de tip short ce reprezinta dificultatea si viteza de deplasare.
+	Dificultatea consta in numarul de asteroizi generati (usor - 2,3,4; mediu - 4,5,6;
+	greu - 6,7,8) iar viteza repezinta delay-ul in functie de care se misca.
+	Metodele principale sunt byte genField (short howMany) ce genereaza o linie 
+	de 'howMany' asteroizi pozitionati aleator si metoda addMeteors(bool&) ce adauga
+	asteroizi in functie de dificultatea selectata si modifica bool-ul transmis ca parametru
+	daca exista asterozi ce ies din matrice.
+	
+	TIP: muta metoda didCollide in asteroizi ca sa se ocupa doar ei de decizia termianrii
+	unei runde
+	
 ## Updates
 
 ### v0.4

@@ -11,14 +11,13 @@
 Asteroids::Asteroids()
 {
   diff = 0;
-  speed = 1;
   astWait.setDelay(DEF_AST_DELAY);
 }
 
-Asteroids::Asteroids(short theDifficulty = 0, short theSpeed = 1)
+Asteroids::Asteroids(short theDifficulty, short theDelay)
 {
   diff = theDifficulty;
-  speed = theSpeed;
+  astWait.setDelay (theDelay);
 }
 
 void Asteroids::raiseDiff()

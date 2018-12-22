@@ -8,7 +8,6 @@
 class Asteroids : public Matrix8x8
 {
   short diff;
-  short speed;
   MillisWait astWait;
  public:
   Asteroids();
@@ -16,8 +15,7 @@ class Asteroids : public Matrix8x8
   byte twoPower(short);
   void raiseDiff();
   void setDiff(unsigned long aDiff);
-  void update();
-  byte intToByte(int);
+   byte intToByte(int);
   byte genField (short);
   void addMeteors (bool& gameOver);
   void setDelay(unsigned long aDelay);
