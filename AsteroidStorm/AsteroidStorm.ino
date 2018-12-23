@@ -21,7 +21,6 @@ Asteroids myAst;
 LeCeDe LCD (12, 11, 10,9, 8, 7);
 
 MillisWait ragazAfisaj(500);
-MillisWait wichState(1000);
 
 
 void mvSheepLeft () { Sheep.moveLeft(); }
