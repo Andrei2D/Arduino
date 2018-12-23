@@ -9,15 +9,7 @@
 
 
 
-/*
-██╗███╗   ██╗██╗████████╗██╗ █████╗ ██╗     ██╗███████╗ █████╗ ██████╗ ██╗
-██║████╗  ██║██║╚══██╔══╝██║██╔══██╗██║     ██║╚══███╔╝██╔══██╗██╔══██╗██║
-██║██╔██╗ ██║██║   ██║   ██║███████║██║     ██║  ███╔╝ ███████║██████╔╝██║
-██║██║╚██╗██║██║   ██║   ██║██╔══██║██║     ██║ ███╔╝  ██╔══██║██╔══██╗██║
-██║██║ ╚████║██║   ██║   ██║██║  ██║███████╗██║███████╗██║  ██║██║  ██║██║
-╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝
-                                                                          
-*/
+/*~~INITIALIZARI~~*/
 
 LedControl lc = LedControl (6, 5, 4, 1);
 JoiceStick Ctrl;
@@ -25,8 +17,6 @@ SpaceShip Sheep;
 Matrix8x8 Mat;
 ShipLasers Laz;
 PushButton leftBtn (2), rightBtn (3);
-PushButton replayBtn (2), exitBtn (3);
-PushButton play1 (2), play2 (3);
 Asteroids myAst;
 LeCeDe LCD (12, 11, 10,9, 8, 7);
 
@@ -54,8 +44,8 @@ void initGame()
   leftBtn.setAction (shootLeft);
   rightBtn.setAction (shootRight);
   
-  leftBtn.setDelay(170);
-  rightBtn.setDelay(170);
+  leftBtn.setDelay(190);
+  rightBtn.setDelay(190);
 
   Ctrl.initH ( mvSheepLeft, mvSheepRight);
   Ctrl.setDelay(120);
@@ -65,15 +55,7 @@ void initGame()
 }
 
 
-/*
-██████╗ ███████╗███╗   ██╗████████╗██████╗ ██╗   ██╗         ██╗ ██████╗  ██████╗
-██╔══██╗██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██║   ██║         ██║██╔═══██╗██╔════╝
-██████╔╝█████╗  ██╔██╗ ██║   ██║   ██████╔╝██║   ██║         ██║██║   ██║██║     
-██╔═══╝ ██╔══╝  ██║╚██╗██║   ██║   ██╔══██╗██║   ██║    ██   ██║██║   ██║██║     
-██║     ███████╗██║ ╚████║   ██║   ██║  ██║╚██████╔╝    ╚█████╔╝╚██████╔╝╚██████╗
-╚═╝     ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝      ╚════╝  ╚═════╝  ╚═════╝
-                                                                                 
-*/
+/*~~PENTRU JOC~~*/
 
 
 int someScore[4] = {0,0,0,0};
@@ -95,6 +77,7 @@ void Exit()
     myMenu = true;
     leftBtn.setAction(startFromMenu);
     rightBtn.setAction(startFromMenu);
+    delay(200);
 }
 
 void startFromMenu ()
@@ -129,15 +112,7 @@ void theActualGame() {
 
 
 
-/*
- ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ 
-██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗
-██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝
-██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗
-╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║
- ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝
-                                                                          
-*/
+/*~~~GAME OVER~~~*/
 
 void xMatrix()
 {
@@ -189,55 +164,39 @@ void gameOverLCD()
     delay(1500);
 }
 
-/*
-███████╗███████╗████████╗██╗   ██╗██████╗ 
-██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗
-███████╗█████╗     ██║   ██║   ██║██████╔╝
-╚════██║██╔══╝     ██║   ██║   ██║██╔═══╝ 
-███████║███████╗   ██║   ╚██████╔╝██║     
-╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝                            
-*/
+/*~~SETUP~~*/
 
 void setup()
 {
 
-  lc.shutdown(0, false); // turn off power saving, enables display
-  lc.setIntensity(0, 0); // sets brightness (0~15 possible values)
-  lc.clearDisplay(0);// clear screen
+    lc.shutdown(0, false); 
+    lc.setIntensity(0, 0); 
+    lc.clearDisplay(0);
 
-  replayBtn.setAction(Replay);
-  exitBtn.setAction(Exit);
+    replayBtn.setAction(Replay);
+    exitBtn.setAction(Exit);
 
-  leftBtn.setAction(startFromMenu);
-  rightBtn.setAction(startFromMenu);
+    leftBtn.setAction(startFromMenu);
+    rightBtn.setAction(startFromMenu);
 
-  Mat.clearMatrix();
-//   initGame();
+    Mat.clearMatrix();
 }
 
-/*
-██╗      ██████╗  ██████╗ ██████╗ 
-██║     ██╔═══██╗██╔═══██╗██╔══██╗
-██║     ██║   ██║██║   ██║██████╔╝
-██║     ██║   ██║██║   ██║██╔═══╝ 
-███████╗╚██████╔╝╚██████╔╝██║     
-╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     
-*/
+/*~~LOOP~~*/
 
 void loop()
 {
-MillisWait::readTime();
+    MillisWait::readTime();
 
-if(myMenu)
-{
+    if(myMenu)
+    {
     LCD.setString(0,"Asteroid Storm");
     LCD.setString(1,"Press to START");
 
-    delay(200);
     leftBtn.ifPressed();
     rightBtn.ifPressed();
-}
-else
+    }
+    else
     {
         if(gameOver)
         {
@@ -253,7 +212,7 @@ else
 
                 leftBtn.ifPressed();
                 rightBtn.ifPressed();
-               
+                
             }
             else
             {

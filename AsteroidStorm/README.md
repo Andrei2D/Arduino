@@ -157,3 +157,9 @@
 		aceluiasi buton in 2 iteratii diferite ale functiei loop 
 		(cu un delay)
 	-scos toate serial-urile din program
+
+### v2.2
+	-am modificat delay-ul laserelor la 190 ms
+	-sters comenatarii inutile
+	-actualizat program pentru a folosi doar 2 variabile de tip
+		PushButton
