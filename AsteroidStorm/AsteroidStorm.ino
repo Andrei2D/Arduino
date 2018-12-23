@@ -24,7 +24,7 @@ JoiceStick Ctrl;
 SpaceShip Sheep;
 Matrix8x8 Mat;
 ShipLasers Laz;
-PushButton bLf (2), bRg (3);
+PushButton leftBtn (2), rightBtn (3);
 PushButton replayBtn (2), exitBtn (3);
 PushButton play1 (2), play2 (3);
 Asteroids myAst;
@@ -51,11 +51,11 @@ void initGame()
 
   Laz.setDelay(70);
   
-  bLf.setAction (shootLeft);
-  bRg.setAction (shootRight);
+  leftBtn.setAction (shootLeft);
+  rightBtn.setAction (shootRight);
   
-  bLf.setDelay(150);
-  bRg.setDelay(190);
+  leftBtn.setDelay(170);
+  rightBtn.setDelay(170);
 
   Ctrl.initH ( mvSheepLeft, mvSheepRight);
   Ctrl.setDelay(120);
@@ -93,6 +93,8 @@ void Exit()
     gameOver = false;
     outofLives = false;
     myMenu = true;
+    leftBtn.setAction(startFromMenu);
+    rightBtn.setAction(startFromMenu);
 }
 
 void startFromMenu ()
@@ -110,8 +112,8 @@ void theActualGame() {
     myAst.setDiff(livesLeft);
 
     Ctrl.checkH();
-    bLf.ifPressed();
-    bRg.ifPressed();
+    leftBtn.ifPressed();
+    rightBtn.ifPressed();
     Laz.update();
 
     Laz.contact(myAst,someScore[livesLeft]);
@@ -206,8 +208,8 @@ void setup()
   replayBtn.setAction(Replay);
   exitBtn.setAction(Exit);
 
-  play1.setAction(startFromMenu);
-  play2.setAction(startFromMenu);
+  leftBtn.setAction(startFromMenu);
+  rightBtn.setAction(startFromMenu);
 
   Mat.clearMatrix();
 //   initGame();
@@ -232,8 +234,8 @@ if(myMenu)
     LCD.setString(1,"Press to START");
 
     delay(200);
-    play1.ifPressed();
-    play2.ifPressed();
+    leftBtn.ifPressed();
+    rightBtn.ifPressed();
 }
 else
     {
@@ -249,8 +251,8 @@ else
                 LCD.setFromPos (0, 13, sirScor );
                 LCD.setString (1, " Replay    Exit ");
 
-                if(replayBtn.isPressed()) Replay();
-                if(exitBtn.isPressed()) Exit();
+                leftBtn.ifPressed();
+                rightBtn.ifPressed();
                
             }
             else
@@ -260,8 +262,12 @@ else
                 {
                     xMatrix();
                     gameOverLCD();
+
                     livesLeft = 3;
                     outofLives = true;
+
+                    leftBtn.setAction(Replay);
+                    rightBtn.setAction(Exit);
 
                     someScore[0] = 0;
                     for(int i=1;i<=3;i++) 
