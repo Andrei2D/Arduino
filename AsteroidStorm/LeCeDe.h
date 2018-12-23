@@ -18,6 +18,7 @@ public:
     void printStrings();
     void setFromPos (short wichOne, short wichPos, char* wichString);
     void setString(short wichOne, char* wichString);
+    void clearStrings();
     void initArrows();
 
 };

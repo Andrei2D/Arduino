@@ -10,13 +10,12 @@ class PushButton
   const int buttonPin;
   void (*doIt)(void);
 
-  bool goodToGo;
   MillisWait btnWait;
 public:
   PushButton (int);
   void setDelay(unsigned long);
   bool isPressed();
-  void onPress();
+  void ifPressed();
   void setAction(void (*toDO)(void));
 };
 

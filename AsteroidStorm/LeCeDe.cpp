@@ -35,6 +35,12 @@
         setFromPos(wichOne,0,wichString);
     }
 
+    void LeCeDe::clearStrings()
+    {
+        setString(0,"                ");
+        setString(1,"                ");
+    }
+
    void LeCeDe::initArrows()
    {
      byte upAndDown[] = {

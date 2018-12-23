@@ -149,3 +149,11 @@
 	-separat pe stari de joc
 	-alte..
 
+### v2.1
+	-restructurat functia loop 
+		-am introdus variabilele myMenu, gameOver si outOfLives 
+		pentru flow control
+	-rezolvat un bug in care imi executa 2 comenzi diferite ale
+		aceluiasi buton in 2 iteratii diferite ale functiei loop 
+		(cu un delay)
+	-scos toate serial-urile din program
