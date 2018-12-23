@@ -1,6 +1,33 @@
-# Joc matrice 8x8 Asteroid Storm
+#Asteroid Storm
 
- Clase existente in program : 
+ ## Descriere:
+		Asteroid Storm este un joc tipic pentru gameboy care te imbarca intr-o mini calatorie in univers.
+		Scopul principal al acestuia este sa distrugi asterozii care iti ies in cale fara sa iti scape 
+	vre-unul ori sa fii lovit de acestia. Jocul iti ofera trei vieti in care poti acumula punctaje ce
+	se vor aduna la final pentru scorul final.
+		Controalele sunt cele doua butoane, cu ajutorul carora impusti lasere din arma stanga sau dreapta, si 
+	joystick-ul, cu ajutorul caruia te poti misca stanga sau dreapta.
+		Pentru a incepe jocul trebuie sa apesi unul dintre cele doua butoane pentru impuscat. In momentul in care
+	ai pierdut toate cele 3 vieti trebuie sa alegi una dintre optiunile "Replay" sau "Exit" apasand butonul 
+	stang respectiv pe cel drept.
+		Fiecare runda are punctaj individual care se adauga la final. Fiecare runda are dificultate scazanda
+	reprezentata de numarul de asteroizi generati pe fiecare rand.
+
+## Componente:
+	- Arduino UNO
+	- LCD1602 Module
+    - Matrice 8x8 cu leduri
+	- 2 butoane
+	- Display LED
+	- Resitente
+	- Capacitoare
+	- Breadboard-uri
+	- Fire
+
+## Video Demonstrativ
+	https://www.youtube.com/watch?v=956ddqFhKxw
+
+# Clase folosite
 
 ## JoiceStick
 	Clasa care se opereaza pe un modul joystick arduino. 
@@ -73,8 +100,6 @@
 	- inlocuit delay cu millis in clasa JoiceStick
 	BUGS:	- ledurile licaresc
 	
-
-# MillisFix updates
 ### v1.1	
 	-schimbat functia int checkDelay() in void checkDelay 
 	-adaugat o variabila bool goodToGo
