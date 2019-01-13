@@ -7,6 +7,10 @@
 #include <string.h>
 #define MAX_WIDTH_LCD 16
 
+/*
+    Clasa ce se ocupa cu modificarea a doua siruri de caractere
+    pentru a fi afisate pe LCD
+*/
 
 class LeCeDe: public LiquidCrystal
 {
