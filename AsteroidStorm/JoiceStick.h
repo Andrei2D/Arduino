@@ -8,8 +8,8 @@
 
   class JoiceStick
   {
-  const int joyX;
-  const int joyY;
+  int joyX;
+  int joyY;
   
     /*
      * Pointeri catre functiile ce trebuie apelate cand se misca
@@ -21,29 +21,35 @@
   MillisWait joyWait;
 
 public:
-  
   JoiceStick();
-  JoiceStick(int, int);
+  JoiceStick (int, int);
   
   void setDelay (unsigned long aDelay);
   
    //Resetare pointeri catre functii la NULL si delay la 100
    
-  void resetVars();
+  void resetVars ();
 
   ///Init VERTICAL
   void initV (void (*left)(), void (*right)());
 
   ///Init HORIZONTAL
-  void initH ( void (*down)(), void (*up)());
+  void initH (void (*down)(), void (*up)());
 
   int isX ();
   int isY ();
   
   ///Check VERTICAL
-  void checkV();
+  void checkV ();
   ///Check HORIZONTAL
-  void checkH();
+  void checkH ();
+
+  /*
+    HORIZONTAL si VERTICAL sunt axele joystickului carora
+      le sunt atribuite anumite functii void care sunt chemate
+      respectand delay-ul
+
+  */
   
 
 };

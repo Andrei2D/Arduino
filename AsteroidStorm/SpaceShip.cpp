@@ -7,6 +7,7 @@
 #define FAR_LEFT B10000000
 #define FAR_RIGHT B00000001
 #define zerO B00000000
+#define LAST_ROW 
 
 SpaceShip::SpaceShip()
 {

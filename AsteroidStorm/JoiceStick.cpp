@@ -13,27 +13,27 @@
  * DOWN   ->   X = 1024
  */
 
-
-
-JoiceStick::JoiceStick():joyX(A0),joyY(A1)
+JoiceStick::JoiceStick()
 {
+  joyX = A0;
+  joyY = A1;
   resetVars();
 }
 
-JoiceStick::JoiceStick(int anlInputX, int anlInputY):joyX(anlInputX),joyY(anlInputY)
+JoiceStick::JoiceStick (int anlInputX, int anlInputY): joyX (anlInputX), joyY (anlInputY)
 {
-  resetVars();
+  resetVars ();
 }
 
-void JoiceStick::resetVars()
+void JoiceStick::resetVars ()
 {
-  joyWait.setDelay(DEF_JOY_DELAY);
+  joyWait.setDelay (DEF_JOY_DELAY);
   goLeft = NULL;
   goRight = NULL;
   goUp = NULL;
   goDown = NULL;
-  pinMode( joyX, INPUT );
-  pinMode( joyY, INPUT );
+  pinMode (joyX, INPUT);
+  pinMode (joyY, INPUT);
 }
 
 void JoiceStick::setDelay (unsigned long aDelay) 
@@ -49,18 +49,21 @@ void JoiceStick::initH (void (*left)(), void (*right)())
 }
 
 ///VERTICAL
-void JoiceStick::initV ( void (*down)(), void (*up)())
+void JoiceStick::initV (void (*down)(), void (*up)())
 {
   goDown = down;
   goUp = up;
 }
 
+/*
+  Ok... stiu ca ar trebui sa inlocuiesc
+*/
 
 int JoiceStick::isX () 
 {
-    int xx = analogRead(joyX);
-    if ( xx < 400 ) return 1;
-    if ( xx > 600 ) return -1;
+    int xx = analogRead (joyX);
+    if (xx < 400) return 1;
+    if (xx > 600) return -1;
     return 0;
 }
 
@@ -68,9 +71,9 @@ int JoiceStick::isX ()
 int JoiceStick::isY () 
 {
   
-    int yy = analogRead(joyY);
-    if ( yy < 400 ) return 1;
-    if ( yy > 600 ) return -1;
+    int yy = analogRead (joyY);
+    if (yy < 400) return 1;
+    if (yy > 600) return -1;
     return 0;
 }
 
@@ -78,19 +81,19 @@ int JoiceStick::isY ()
 void JoiceStick::checkH()
 {
   
-  int wh = isY();
-  if ( goLeft == NULL || goRight == NULL || wh == 0) return;
-  if ( wh < 0 && joyWait.isOk() )  goLeft();
-  if ( wh > 0 && joyWait.isOk() )  goRight();
+  int wh = isY ();
+  if (goLeft == NULL || goRight == NULL || wh == 0) return;
+  if (wh < 0 && joyWait.isOk())  goLeft ();
+  if (wh > 0 && joyWait.isOk())  goRight ();
 
 }
 
 void JoiceStick::checkV()
 {
   
-  int wh = isX();
+  int wh = isX ();
   if (goLeft == NULL || goRight == NULL || wh == 0) return;
-  if ( wh < 0 && joyWait.isOk() )  goDown();
-  if ( wh > 0 && joyWait.isOk() )  goUp();
+  if (wh < 0 && joyWait.isOk ())  goDown ();
+  if (wh > 0 && joyWait.isOk ())  goUp ();
 
 }

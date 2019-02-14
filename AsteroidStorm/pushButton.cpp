@@ -6,11 +6,11 @@
 PushButton::PushButton (int aPin):buttonPin(aPin)
 {
   pinMode (buttonPin, INPUT);
-  btnWait.setDelay(DEF_BTN_DELAY);
+  btnWait.setDelay (DEF_BTN_DELAY);
   doIt = NULL;
 }
 
-void PushButton::setDelay(unsigned long aDelay)
+void PushButton::setDelay (unsigned long aDelay)
 {
   btnWait.setDelay (aDelay);
 }
@@ -21,15 +21,15 @@ void PushButton::setAction (void (*toDO)(void))
   doIt = toDO;
 }
  
-bool PushButton::isPressed()
+bool PushButton::isPressed ()
 {
-  return digitalRead(buttonPin) == HIGH;
+  return digitalRead (buttonPin) == HIGH;
 }
 
-void PushButton::ifPressed()
+void PushButton::ifPressed ()
 {
-  if (isPressed() && btnWait.isOk()) 
+  if (isPressed() && btnWait.isOk ()) 
   {
-    doIt();
+    doIt ();
   }
 }

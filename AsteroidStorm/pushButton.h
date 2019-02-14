@@ -8,15 +8,14 @@
 class PushButton
 {
   const int buttonPin;
-  void (*doIt)(void);
-
-  MillisWait btnWait;
+  void (*doIt)(void);   //Functie chemata in metoda ifPressed
+  MillisWait btnWait;   
 public:
   PushButton (int);
-  void setDelay(unsigned long);
-  bool isPressed();
-  void ifPressed();
-  void setAction(void (*toDO)(void));
+  void setDelay (unsigned long);  //Seteaza delay custom
+  bool isPressed ();              //Verifica daca este apasat 
+  void ifPressed ();              //Actioneaza daca este apasat si a trecut delay-ul necesar
+  void setAction (void (*toDO)(void));  //Seteaza functia de actiune 
 };
 
 #endif /// BUTTON_H

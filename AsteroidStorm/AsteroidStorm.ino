@@ -172,8 +172,8 @@ void setup()
     lc.setIntensity(0, 0); 
     lc.clearDisplay(0);
 
-    replayBtn.setAction(Replay);
-    exitBtn.setAction(Exit);
+//    replayBtn.setAction(Replay);
+//    exitBtn.setAction(Exit);
 
     leftBtn.setAction(startFromMenu);
     rightBtn.setAction(startFromMenu);
@@ -233,6 +233,7 @@ void loop()
                             someScore[0] += someScore[i];
                             someScore[i] = 0;
                         }
+                    delay(250);
                 }
                 else
                 {
