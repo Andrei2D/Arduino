@@ -9,7 +9,7 @@
 
 /*
     Clasa ce se ocupa cu modificarea a doua siruri de caractere
-    pentru a fi afisate pe LCD
+    pentru a fi afisate pe LCD 
 */
 
 class LeCeDe: public LiquidCrystal

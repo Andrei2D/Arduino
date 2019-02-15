@@ -239,7 +239,6 @@ void loop()
                 theActualGame();
     }
 
-
     if(ragazAfisaj.isOk()) LCD.printStrings();
     Mat.playOn(lc);
 

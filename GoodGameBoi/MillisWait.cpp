@@ -12,7 +12,7 @@
     {
         theDelay = aDelay;
         readTime ();
-        lastTime = millis();
+        lastTime = millis(); 
     }
 
 

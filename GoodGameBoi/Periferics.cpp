@@ -1,5 +1,5 @@
 #include "Periferics.h"    
-    
+#include <Arduino.h>
     //  >>> LeCeDe  <<<
 LeCeDe::LeCeDe(uint8_t Res, uint8_t Enb, uint8_t de0, uint8_t de1, uint8_t de2, uint8_t de3):LiquidCrystal(Res, Enb, de0, de1, de2, de3)
     {

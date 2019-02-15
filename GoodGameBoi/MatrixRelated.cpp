@@ -104,7 +104,8 @@
 
   byte& Matrix8x8::operator[](int i)
   {
-    if ( i < 0 || i > 7 ) return;
+    if ( i < 0) return octaMat[0];
+    if( i > 7 ) return octaMat[7];
     return octaMat[i];
   }
   

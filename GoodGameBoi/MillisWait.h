@@ -7,7 +7,7 @@
     Clasa folosita pentru delay-urile inputurilor.
     Fiecare alta clasa care are principiul de periodicitate
         are declarat un obiect al acestei clase
-    
+
 */
 class MillisWait
 {
