@@ -2,7 +2,8 @@
 #include "Periferics.h"
 #include "MatrixRelated.h"
 
-/*~~INITIALIZARI~~*/
+/*
+//  ~~INITIALIZARI~~
 
 LedControl lc = LedControl (6, 5, 4, 1);
 JoiceStick Ctrl;
@@ -47,7 +48,7 @@ void initGame()
 }
 
 
-/*~~PENTRU JOC~~*/
+//  ~~PENTRU JOC~~
 
 
 int someScore[4] = {0,0,0,0};
@@ -104,7 +105,7 @@ void theActualGame() {
 
 
 
-/*~~~GAME OVER~~~*/
+//  ~~~GAME OVER~~~
 
 void xMatrix()
 {
@@ -156,7 +157,7 @@ void gameOverLCD()
     delay(1500);
 }
 
-/*~~SETUP~~*/
+//  ~~SETUP~~
 
 void setup()
 {
@@ -174,7 +175,7 @@ void setup()
     Mat.clearMatrix();
 }
 
-/*~~LOOP~~*/
+// ~~LOOP~~
 
 void loop()
 {
@@ -242,4 +243,29 @@ void loop()
     if(ragazAfisaj.isOk()) LCD.printStrings();
     Mat.playOn(lc);
 
+}
+*/
+#include "AlgPushButton.h"
+
+void setup()
+{
+    Serial.begin(9600);
+}
+
+int aPins[] = {A0, A1, A2, A3};
+char* Names[] = {"Xaxis", "JoyBut", "Yaxis", "PushBut"};
+AlgPushButton Joy(A1, JOY_BTN);
+AlgPushButton Btn(A3, PUSH_BTN);
+void loop()
+{
+    for(int i=0; i<4; i++)
+    {
+        Serial.print(Names[i]);
+        Serial.print(" :\t ");
+        Serial.println(analogRead(aPins[i]));
+    }
+    if(Joy.isPressed()) Serial.print("Joy\t");
+    if(Btn.isPressed()) Serial.print("Btn\t");
+    delay(500);
+    Serial.println();
 }

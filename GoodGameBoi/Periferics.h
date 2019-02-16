@@ -100,7 +100,8 @@ public:
 
 class PushButton
 {
-  const int buttonPin;
+protected:
+  int buttonPin;
   void (*doIt)(void);   //Functie chemata in metoda ifPressed
   MillisWait btnWait;   
 public:
