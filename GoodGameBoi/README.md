@@ -1,6 +1,33 @@
 # GoodGameBoi
     Proiect final al optionalului de Arduino. Acesta consista dintr-o consola de mini-game-uri pentru matrice 8x8
+	
+## Planuiesc sa includ urmatoarele jocuri:
 
+### 1 player:
+	Asteroid Storm	
+	Bricks Breaker
+	Car chase
+	Tetris		
+	Alien invasion	
+
+### 2 players:
+	Ping Pong 	
+	Ships voley
+	Space duel
+	Star catchers
+	TicTacToe
+
+### Rezerva:
+	Anti tetris 1p
+	Match the forms 2p
+	Snake 1p
+	Snake battle 2p
+
+	
+	
+	
+	
+	
 ## Updates:
 
 ### v0.1 - Initial commit
