@@ -1,18 +1,103 @@
 #include "MillisWait.h"
 #include "Periferics.h"
 #include "MatrixRelated.h"
+#include "AsteroidStorm.h"
+#include "GameControl.h"
+#include "Menu.h"
 
-/*
+#define DATA_PIN 8
+#define CLK_PIN 7
+#define CS_PIN 6
+
+#define RS_PIN 12
+#define ENB_PIN 11
+#define D3_PIN_M 2
+#define D2_PIN_M 3
+#define D1_PIN_M 4
+#define D0_PIN_M 5
+
+#define X_PIN_SEC A7
+#define Y_PIN_SEC A6
+#define JOY_BTN_SEC A5
+
+#define X_PIN_PRIM A4
+#define Y_PIN_PRIM A3
+#define JOY_BTN_PRIM A2
+
+#define LEFT_BTN_PIN A1
+#define RIGHT_BTN_PIN A0
+
+GameControl Ctrl_IO;
+MiniGame* Game[2];
+void setup()
+{
+    Serial.begin(9600);
+    Ctrl_IO.init_LED (DATA_PIN,CLK_PIN, CS_PIN, 1);
+    Ctrl_IO.init_LCD (RS_PIN, ENB_PIN, D0_PIN_M, D1_PIN_M, D2_PIN_M, D3_PIN_M);
+    Ctrl_IO.init_PushBtns (LEFT_BTN_PIN, RIGHT_BTN_PIN);
+    Ctrl_IO.init_Joy (X_PIN_PRIM, Y_PIN_PRIM, JOY_BTN_PRIM);
+    Ctrl_IO.init_JoySec (X_PIN_SEC, Y_PIN_SEC, JOY_BTN_SEC);
+    Ctrl_IO.LCD->initArrows();
+
+    M.setIO(&Ctrl_IO);
+
+    Game[0] = &M;
+    Game[1] = &Ast_Storm;
+
+}
+
+void loop ()
+{
+    MillisWait::readTime();
+
+    
+    switch (Game[game_index]->checkState())
+    {
+        case INIT_GAME:
+            Game[game_index]->init();
+            break;
+        
+        case UPDATE:
+            Game[game_index]->update();
+            break;
+
+        case LOSE_COND:
+            Game[game_index]->loseCond();
+            break;
+
+        case WARN_LOSE_COND:
+            Game[game_index]->warnLosing();
+            break;
+
+        case GAME_OVER:
+            Game[game_index]->gameOver();
+            break;
+
+        case FINAL_SCORE:
+            Game[game_index]->finalScore();
+
+        default:
+            game_index = 0;
+            M.setState(INIT_GAME);
+            break;
+    }
+
+    Ctrl_IO.play();
+}
+
+
 //  ~~INITIALIZARI~~
-
+/*
 LedControl lc = LedControl (6, 5, 4, 1);
-JoiceStick Ctrl;
-SpaceShip Sheep;
-Matrix8x8 Mat;
-ShipLasers Laz;
-PushButton leftBtn (2), rightBtn (3);
-Asteroids myAst;
 LeCeDe LCD (12, 11, 10,9, 8, 7);
+JoiceStick Ctrl;
+PushButton leftBtn (2), rightBtn (3);
+
+Matrix8x8 Mat;
+
+ShipLasers Laz;
+SpaceShip Sheep;
+Asteroids myAst;
 
 MillisWait ragazAfisaj(500);
 
@@ -156,33 +241,20 @@ void gameOverLCD()
     LCD.printStrings();
     delay(1500);
 }
+*/
+                        //  ~~SETUP~~
 
-//  ~~SETUP~~
 
-void setup()
-{
-
-    lc.shutdown(0, false); 
-    lc.setIntensity(0, 0); 
-    lc.clearDisplay(0);
-
-//    replayBtn.setAction(Replay);
-//    exitBtn.setAction(Exit);
-
-    leftBtn.setAction(startFromMenu);
-    rightBtn.setAction(startFromMenu);
-
-    Mat.clearMatrix();
-}
 
 // ~~LOOP~~
-
+/*
 void loop()
 {
     MillisWait::readTime();
 
     if(myMenu)
     {
+        ///MY MENU FUNCTION
     LCD.setString(0,"Asteroid Storm");
     LCD.setString(1,"Press to START");
 
@@ -192,10 +264,10 @@ void loop()
     else
     {
         if(gameOver)
-        {
+        {       ///GAME FINISH CONDITION
             if(outofLives)
             {
-
+                ///GAME'S ENDING METOD
                 char sirScor[7];
                 itoa(someScore[0],sirScor,10);
 
@@ -238,34 +310,11 @@ void loop()
         }
         else
                 theActualGame();
+                    //  GAME UPDATE FUNCTION
     }
 
     if(ragazAfisaj.isOk()) LCD.printStrings();
     Mat.playOn(lc);
 
-}
-*/
-#include "AlgPushButton.h"
+}*/
 
-void setup()
-{
-    Serial.begin(9600);
-}
-
-int aPins[] = {A0, A1, A2, A3};
-char* Names[] = {"Xaxis", "JoyBut", "Yaxis", "PushBut"};
-AlgPushButton Joy(A1, JOY_BTN);
-AlgPushButton Btn(A3, PUSH_BTN);
-void loop()
-{
-    for(int i=0; i<4; i++)
-    {
-        Serial.print(Names[i]);
-        Serial.print(" :\t ");
-        Serial.println(analogRead(aPins[i]));
-    }
-    if(Joy.isPressed()) Serial.print("Joy\t");
-    if(Btn.isPressed()) Serial.print("Btn\t");
-    delay(500);
-    Serial.println();
-}

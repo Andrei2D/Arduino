@@ -192,14 +192,6 @@ void SpaceShip::resetPosition ()
   rightGunPos = RIGHT_GUN;
   
 }
-
-void SpaceShip::didCollide(bool& gameOver,Matrix8x8& whatMat)
-{
-  byte secLastLine = octaMat[6] & whatMat[6];
-  byte lastLine =  octaMat[7] & whatMat[7];
-  if(secLastLine != zerO || lastLine != zerO) gameOver = true;
-  
-}
 //      END OF SpaceShip
 
 /*
@@ -218,6 +210,7 @@ void SpaceShip::didCollide(bool& gameOver,Matrix8x8& whatMat)
 #define DEF_PEN 750
 
 ShipLasers :: ShipLasers () 
+
 {
   laserTracker = zerO;
   lazWait.setDelay(DEF_DELAY);
@@ -256,19 +249,6 @@ int ShipLasers::howMuchOnes ( byte toDisecate )
   return theOnes;
 }
 
-void ShipLasers::contact(Matrix8x8& asteroMat, int& theScore)
-{
-  for ( int i = 0; i < 7; i ++ )
-   {
-    byte meetUp = octaMat [ i ] & asteroMat [ i ];
-    if ( meetUp != zerO)
-      {
-        asteroMat [i] ^= octaMat [i];
-        octaMat [i] -= meetUp;
-        theScore += howMuchOnes(meetUp);
-      }
-   }
-}
 
 void ShipLasers::setDelay(unsigned long aDelay)
 {
@@ -374,17 +354,18 @@ byte Asteroids::genField (short howMany)
   return toGo;
 }
 
-void Asteroids::addMeteors (bool& gameOver)
+bool Asteroids::addMeteors ()
 {
-  
-if(astWait.isOk())
-    {
-  short randAst = random(3);
-  short howMany = 2 + diff + randAst;
-  if (octaMat[7] != zerO) gameOver = true;
-  shDown();
-  octaMat[0] = genField ( howMany );
-    }
+
+  if(astWait.isOk())
+  {
+    short randAst = random(3);
+    short howMany = 2 + diff + randAst;
+    if (octaMat[7] != zerO) return true;
+    shDown();
+    octaMat[0] = genField ( howMany );
+  }
+  return false;
 }
 
 void Asteroids::setDelay(unsigned long aDelay)

@@ -17,6 +17,7 @@ class MillisWait
 public:
     MillisWait ();
     MillisWait (unsigned long aDelay);
+    void initDelay(unsigned long aDelay);
     void setDelay (unsigned long aDelay);
     static void readTime();
     bool isOk ();

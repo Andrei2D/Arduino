@@ -10,6 +10,8 @@
 
 #include <LedControl.h>
 
+
+
 /* Simulare matrice de leduri cu un vector
     cu 8 elemente de tip byte */
 class Matrix8x8
@@ -59,7 +61,7 @@ public:
 
 #define SPACESHIP_H
 
-
+#define zerO B00000000
 /*
   Clasa care simuleaza miscarile unei navete spatiale 
     pe doua randuri ale matricii dar care este totusi
@@ -80,7 +82,6 @@ class SpaceShip : public Matrix8x8
   byte rightGun ();
 
   void resetPosition ();
-  void didCollide (bool&, Matrix8x8&);
 
 };
 
@@ -108,7 +109,6 @@ public:
   ShipLasers();
   void update();
   int howMuchOnes(byte toDisecate);
-  void contact(Matrix8x8&,int&);
   void addLaser(byte);
   void setDelay(unsigned long);
   void resetDelay();
@@ -136,15 +136,19 @@ class Asteroids : public Matrix8x8
 {
   short diff;
   MillisWait astWait;
+  
+  byte twoPower(short);
+  byte intToByte(int);
  public:
   Asteroids();
   Asteroids(short,short);
-  byte twoPower(short);
   void raiseDiff();
   void setDiff(unsigned long aDiff);
-   byte intToByte(int);
   byte genField (short);
-  void addMeteors (bool& gameOver);
+    /* Functie care genereaza o noua linie de asteroizi si 
+    returneaza daca o conditie de terminare a rundei este 
+    indeplinita     */
+  bool addMeteors ();
   void setDelay(unsigned long aDelay);
 
 };

@@ -10,8 +10,8 @@ LeCeDe::LeCeDe(uint8_t Res, uint8_t Enb, uint8_t de0, uint8_t de1, uint8_t de2, 
     
     void LeCeDe::defHW()
     {
-        strcpy(leStrings[0]," Asteroid      ");
-        strcpy(leStrings[1],"        Storm   ");
+        strcpy(leStrings[0],"                ");
+        strcpy(leStrings[1],"                ");
     }
 
     void LeCeDe::printStrings()
@@ -134,10 +134,18 @@ void JoiceStick::initH (void (*left)(), void (*right)())
 }
 
 ///VERTICAL
-void JoiceStick::initV (void (*down)(), void (*up)())
+void JoiceStick::initV (void (*up)(), void (*down)())
 {
   goDown = down;
   goUp = up;
+}
+
+
+void Joicestick::initPins (int anlX, anlY)
+{
+  joyX = anlX;
+  joyY = anlY;
+  resetVars();
 }
 
 /*
@@ -166,8 +174,13 @@ int JoiceStick::isY ()
 void JoiceStick::checkH()
 {
   
-  int wh = isY ();
-  if (goLeft == NULL || goRight == NULL || wh == 0) return;
+  int wh;
+  if (goLeft == NULL || goRight == NULL) return;
+  else
+  {
+    wh = isY ();
+     if( wh == 0) return;
+  }
   if (wh < 0 && joyWait.isOk())  goLeft ();
   if (wh > 0 && joyWait.isOk())  goRight ();
 
@@ -176,8 +189,13 @@ void JoiceStick::checkH()
 void JoiceStick::checkV()
 {
   
-  int wh = isX ();
-  if (goLeft == NULL || goRight == NULL || wh == 0) return;
+  int wh;
+  if (goUp == NULL || goDown == NULL) return;
+  else
+  {
+    wh = isX ();
+     if( wh == 0) return;
+  }
   if (wh < 0 && joyWait.isOk ())  goDown ();
   if (wh > 0 && joyWait.isOk ())  goUp ();
 
