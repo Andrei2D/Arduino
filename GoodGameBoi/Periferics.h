@@ -6,6 +6,7 @@
 #include <Arduino.h>
 #include <string.h>
 #define MAX_WIDTH_LCD 16
+#define BLANK_ARR "                "
 
 /*
     Clasa ce se ocupa cu modificarea a doua siruri de caractere
@@ -64,13 +65,10 @@ public:
   void resetVars ();
 
   ///Init VERTICAL
-  void initV (void (*up)(), void (*down)());
+  void initV (void (*down)(), void (*up)());
 
   ///Init HORIZONTAL
   void initH (void (*left)(), void (*right)());
-
-  ///Init PINS
-  void initPins(int anlX, anlY);
 
   int isX ();
   int isY ();
@@ -110,7 +108,7 @@ protected:
 public:
   PushButton (int);
   void setDelay (unsigned long);  //Seteaza delay custom
-  virtual bool isPressed ();              //Verifica daca este apasat 
+  bool isPressed ();              //Verifica daca este apasat 
   void ifPressed ();              //Actioneaza daca este apasat si a trecut delay-ul necesar
   void setAction (void (*toDO)(void));  //Seteaza functia de actiune 
 };

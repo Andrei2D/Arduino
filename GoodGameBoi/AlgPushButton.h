@@ -14,12 +14,6 @@ public:
     {
         type = theType;
     }
-    void init (int Analog_Pin, int theType = PUSH_BTN )
-    {
-        buttonPin = Analog_pin;
-        type = theType;
-    }
-
     bool isPressed()
     {
         if(type == PUSH_BTN)

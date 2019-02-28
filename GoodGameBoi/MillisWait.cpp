@@ -15,11 +15,6 @@
         lastTime = millis(); 
     }
 
-    void MillisWait::initDelay(unsigned long aDelay)
-    {
-        lastTime = millis();
-        theDelay = aDelay;
-    }
 
     unsigned long MillisWait::currentTime = millis ();
     

@@ -142,14 +142,14 @@
 #define zerO B00000000
 #define LAST_ROW 
 
-SpaceShip::SpaceShip()
+SpaceShip::SpaceShip ()
 {
   leftGunPos = LEFT_GUN;
   rightGunPos = RIGHT_GUN;
   resetPosition();
 }
 
-void SpaceShip::moveLeft()
+void SpaceShip::moveLeft ()
 {
   
   byte positionStatus = octaMat [ 7 ] & FAR_LEFT;
@@ -161,7 +161,7 @@ void SpaceShip::moveLeft()
   }
 }
 
-void SpaceShip::moveRight()
+void SpaceShip::moveRight ()
 {
   
  byte positionStatus = octaMat [ 7 ] & FAR_RIGHT;
@@ -173,12 +173,12 @@ void SpaceShip::moveRight()
   }
 }
 
-byte SpaceShip::leftGun() 
+byte SpaceShip::leftGun () 
 { 
   return leftGunPos; 
 }
 
-byte SpaceShip::rightGun() 
+byte SpaceShip::rightGun () 
 { 
   return rightGunPos; 
 }
@@ -192,6 +192,17 @@ void SpaceShip::resetPosition ()
   rightGunPos = RIGHT_GUN;
   
 }
+
+bool SpaceShip::didCollide (Matrix8x8& whatMat)
+{
+  byte secLastLine = octaMat[6] & whatMat[6];
+  byte lastLine =  octaMat[7] & whatMat[7];
+  
+  if(secLastLine != zerO || lastLine != zerO)
+     return true;
+  return false;
+  
+}
 //      END OF SpaceShip
 
 /*
@@ -203,14 +214,11 @@ void SpaceShip::resetPosition ()
                |_|                                 
 */
 
-#include <avr/pgmspace.h>
-#include <Arduino.h>
 
 #define DEF_DELAY 50
 #define DEF_PEN 750
 
 ShipLasers :: ShipLasers () 
-
 {
   laserTracker = zerO;
   lazWait.setDelay(DEF_DELAY);
@@ -222,7 +230,7 @@ void ShipLasers::update()
   if ( (laserTracker != zerO) && lazWait.isOk())
     {
         laserTracker = laserTracker >> 1;
-        if(octaMat[0] != zerO) penaltyWait.setDelay(DEF_PEN);
+        if(octaMat[0] != zerO) penaltyWait.setDelay (DEF_PEN);
         shUp();
     }
 }
@@ -249,6 +257,21 @@ int ShipLasers::howMuchOnes ( byte toDisecate )
   return theOnes;
 }
 
+int ShipLasers::contact(Matrix8x8& asteroMat)
+{
+  int astHit = 0;
+  for ( int i = 0; i < 7; i ++ )
+   {
+    byte meetUp = octaMat [ i ] & asteroMat [ i ];
+    if ( meetUp != zerO)
+      {
+        asteroMat [i] ^= octaMat [i];
+        octaMat [i] -= meetUp;
+        astHit += howMuchOnes(meetUp);
+      }
+   }
+   return astHit;
+}
 
 void ShipLasers::setDelay(unsigned long aDelay)
 {
@@ -270,46 +293,30 @@ void ShipLasers::resetDelay()
  /_/   \_\___/\__\___|_|  \___/|_|\__,_|___/
                                             
 */
-#define DEF_AST_DELAY 1500
-
+#define AST_DELAY(x) (1500 - 150 * x)
 /*
-  Dificultati: 
+  Difficulties: 
     -Easy (0)   - 2,3,4 numar asteroizi
     -Medium (1) - 4,5,6 numar asteroizi 
-    -Hard (2)   - 6,7,8 numar asteroizi
+    -Hard (2)   - 5,6,7 numar asteroizi
+
+    2 3 4
+    4 5 6
+    5 6 7
 */
 Asteroids::Asteroids()
 {
   diff = 0;
-  astWait.setDelay(DEF_AST_DELAY);
+  astWait.setDelay (AST_DELAY(diff));
 }
 
-Asteroids::Asteroids(short theDifficulty, short theDelay)
-{
-  diff = theDifficulty;
-  astWait.setDelay (theDelay);
-}
-
-void Asteroids::raiseDiff()
-{
-  if(diff < 2) diff ++;
-
-}
-
-void Asteroids::setDiff(unsigned long aDiff)
+void Asteroids::setDiff (short aDiff)
 {
   diff = aDiff;
+  astWait.setDelay (AST_DELAY(diff));
 }
 
-byte Asteroids::intToByte(int uglyInt)
-{
-  char mehChar = uglyInt % 256;
-  byte handsomeByte;
-  
-  
-}
-
-byte Asteroids::twoPower(short Power)
+byte Asteroids::twoPower (short Power)
 {
   if(Power <= 0 ) return B1;
   byte wichOne = 1;
@@ -324,6 +331,9 @@ byte Asteroids::twoPower(short Power)
 
 byte Asteroids::genField (short howMany)
 {
+  
+  Serial.print (howMany);
+
   if(howMany == 8) return 255;
   
   byte toGo, toAdd;
@@ -356,16 +366,23 @@ byte Asteroids::genField (short howMany)
 
 bool Asteroids::addMeteors ()
 {
+  
+if(!astWait.isOk()) return false;
+  
+  int lower;
 
-  if(astWait.isOk())
-  {
-    short randAst = random(3);
-    short howMany = 2 + diff + randAst;
-    if (octaMat[7] != zerO) return true;
-    shDown();
-    octaMat[0] = genField ( howMany );
-  }
+  if(diff == 2) lower = 5;
+  else lower = 2 + 2 * diff;
+
+  short howMany = random (lower, lower + 3);
+
+  if (octaMat[7] != zerO) return true;
+  shDown();
+  byte neww = genField ( howMany );
+
+  octaMat[0] = neww;
   return false;
+
 }
 
 void Asteroids::setDelay(unsigned long aDelay)

@@ -1,52 +1,144 @@
-#ifndef MENU_H
-#define MENU_H
-#include "GameControl.h"
+#ifndef MAIN_MENU
 
-struct Menu: public MiniGame
+#define MAIN_MENU
+
+#include "Game.h"
+
+//Highes scores
+char scoreTexts [][17] = { "E:   ", "M:   ", "H:   "};
+byte scoreOpt = 0;
+
+//Difficulty select
+char diffTexts [][17] = {"Easy", "Medium", "Hard"};
+byte diffOpt = 0;
+
+    //High scores menu functions
+void prevScr () 
 {
-    
-    int total_options = 2;
-    char Choose[17] = "Alege un joc: ";
-    char Options[2][17] =  {"AsteroidStorm|1P", "Coming soon.."};
-
-    void init();
-    void update();
-    void gameOver() {}
-}M;
-
-int game_index = 0;
-int menu_index = 1;
-
-
-void Plus() 
-{
-    if(menu_index < M.total_options)
-    menu_index++;
+    if (scoreOpt > 0)
+        scoreOpt -- ;
 }
 
-void Minus()
+void nextScr ()
 {
-    if(menu_index > 1)
-        menu_index --;
+    if (scoreOpt < 2)
+        scoreOpt ++;
 }
 
-void select() {game_index = menu_index;}
-
-void Menu::init()
-{
-    menu_index = 1;
-    Ctrl->Joy->initV (Minus, Plus);
-    Ctrl->set_buttons_actions (select, select);
-    Ctrl->set_joy_buttons_actions(select, select);
-    Ctrl->LCD->setString(0,Choose);
-
-    currState = UPDATE;
+void initScore ()
+{            
+    Ctrl.initV (nextScr, prevScr);
+    leftBtn.setAction (Exit);
+    rightBtn.setAction (Exit);
 }
 
-void Menu::update() 
+    //Difficulty menu functions
+void prevDiff ()
 {
-    Ctrl->checkAll();
-    Ctrl->LCD->setString(1, Options[menu_index-1]);
+    if (diffOpt > 0)
+        diffOpt -- ;
+}
+void nextDiff ()
+{
+    if (diffOpt < 2)
+        diffOpt ++ ;
 }
 
-#endif //MENU_H
+
+void selectDiff ()
+{
+    difficulty = diffOpt;
+    myAst.setDiff (diffOpt); 
+    Exit ();
+}
+
+
+void initDiff ()
+{
+    Ctrl.initV (nextDiff, prevDiff);
+    leftBtn.setAction (selectDiff);
+    rightBtn.setAction (Exit);
+}
+
+
+//MENU
+char menuTexts [][17] = {"Start game", "Set Dificulty", "High score"};
+byte menuOpt = 0;
+
+    ///change state from menu to game
+void startFromMenu ()
+{
+    gameOver = false;
+    outofLives = false;
+    initGame();
+}
+
+void menuUp () 
+{
+    if (menuOpt > 0)
+        menuOpt -- ;
+}
+
+void menuDown ()
+{
+    if (menuOpt < 2)
+        menuOpt ++ ;
+}
+
+
+void menuBtnSelect ()
+{
+    switch (menuOpt + 1)
+    {
+        case GAME:
+            startFromMenu ();
+            gameState = GAME;
+            Serial.print ("Game state: ");
+            Serial.println (gameState);
+            break;
+        
+        case DIFF:
+            initDiff();
+            gameState = DIFF;
+            break;
+        
+        case SCORE:
+            initScore ();
+            gameState = SCORE;
+            break;
+
+        default:
+            Serial.println("Selected something");
+            break;
+    }  
+    delay(250); 
+}
+
+
+    //reinit game (replay)
+void Replay()
+{
+    gameOver = false;
+    outofLives = false;
+    initGame();
+}
+
+    //init menu
+void Exit()
+{
+    gameState = MENU;
+
+    Mat.clearMatrix();
+    gameOver = false;
+    outofLives = false;
+    //myMenu = true;
+
+    Ctrl.initV(menuDown, menuUp);
+    Ctrl.setDelay(200);
+    leftBtn.setAction (menuBtnSelect);
+    rightBtn.setAction (menuBtnSelect);
+    Serial.println("Exit");
+    delay(200);
+}
+
+#endif //MAIN_MENU
