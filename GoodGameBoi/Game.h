@@ -49,8 +49,7 @@ void theActualGame()
     Laz.update();
 
     someScore[livesLeft] += Laz.contact (myAst) * (difficulty + 1);
-    gameOver = myAst.addMeteors ();
-    gameOver = Sheep.didCollide (myAst);
+    gameOver = myAst.addMeteors () | Sheep.didCollide (myAst);
 
     char sirPtNumar[10];
     itoa(someScore[livesLeft],sirPtNumar,10);

@@ -366,7 +366,7 @@ byte Asteroids::genField (short howMany)
 bool Asteroids::addMeteors ()
 {
   
-if(!astWait.isOk()) return false;
+  if(!astWait.isOk()) return false;
   
   int lower;
 
