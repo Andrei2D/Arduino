@@ -131,7 +131,7 @@ void Exit()
     //myMenu = true;
 
     Ctrl.initV(menuDown, menuUp);
-    Ctrl.setDelay(200);
+    Ctrl.setDelay(250);
     leftBtn.setAction (menuBtnSelect);
     rightBtn.setAction (menuBtnSelect);
     delay(200);
