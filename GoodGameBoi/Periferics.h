@@ -114,3 +114,29 @@ public:
 };
 
 #endif /// BUTTON_H
+
+
+#ifndef ANALOG_PUSH_BUTTON
+
+#define ANALOG_PUSH_BUTTON
+
+#define JOY_BTN 1
+#define PUSH_BTN 0
+
+class AlgPushButton: public PushButton
+{
+    int type;
+public:
+    AlgPushButton(int Analog_Pin, int theType = PUSH_BTN ):PushButton(Analog_Pin)
+    {
+        type = theType;
+    }
+    bool isPressed()
+    {
+        if(type == PUSH_BTN)
+            return (analogRead(buttonPin) > 900) ? true : false;
+        else return (analogRead(buttonPin) < 10) ? true : false;
+    }
+};
+
+#endif // ANALOG_PUSH_BUTTON
