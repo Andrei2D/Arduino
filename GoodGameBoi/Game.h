@@ -23,10 +23,7 @@ void initGame()
 
     Laz.setDelay(70);    
     myAst.setDiff (difficulty); 
-    
-    Serial.print ("Difficulty: ");
-    Serial.println (difficulty);
-    
+
     leftBtn.setAction (shootLeft);
     rightBtn.setAction (shootRight);
 

@@ -3,7 +3,6 @@
 
 void setup()
 {
-    Serial.begin(9600);
     lc.shutdown(0, false); 
     lc.setIntensity(0, 0); 
     lc.clearDisplay(0);
@@ -66,7 +65,6 @@ void loop()
         break;  
             
     default:
-        Serial.println ("That's weird");
         break;
     }
     

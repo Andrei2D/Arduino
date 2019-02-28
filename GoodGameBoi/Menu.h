@@ -93,8 +93,6 @@ void menuBtnSelect ()
         case GAME:
             startFromMenu ();
             gameState = GAME;
-            Serial.print ("Game state: ");
-            Serial.println (gameState);
             break;
         
         case DIFF:
@@ -108,7 +106,6 @@ void menuBtnSelect ()
             break;
 
         default:
-            Serial.println("Selected something");
             break;
     }  
     delay(250); 
@@ -137,7 +134,6 @@ void Exit()
     Ctrl.setDelay(200);
     leftBtn.setAction (menuBtnSelect);
     rightBtn.setAction (menuBtnSelect);
-    Serial.println("Exit");
     delay(200);
 }
 

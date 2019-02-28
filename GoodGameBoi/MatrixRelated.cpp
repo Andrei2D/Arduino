@@ -331,8 +331,7 @@ byte Asteroids::twoPower (short Power)
 
 byte Asteroids::genField (short howMany)
 {
-  
-  Serial.print (howMany);
+
 
   if(howMany == 8) return 255;
   
