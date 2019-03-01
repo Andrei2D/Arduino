@@ -87,8 +87,7 @@
 	asteroizi in functie de dificultatea selectata si modifica bool-ul transmis ca parametru
 	daca exista asterozi ce ies din matrice.
 	
-	TIP: muta metoda didCollide in asteroizi ca sa se ocupa doar ei de decizia termianrii
-	unei runde
+
 	
 ## Updates
 
