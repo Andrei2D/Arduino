@@ -1,45 +1,42 @@
-# GoodGameBoi
-    Proiect final al optionalului de Arduino. Acesta consista dintr-o consola de mini-game-uri pentru matrice 8x8
+# What is GoodGameBoi ?
+
+It's a one-game mini game console containing Asteroid Storm, programmed on an Arduino microcontroller. It's reacreating the feeling of the retro brick game console, which is personally a childhood symbol, while giving a modular experience (parts being able to swap out) and a swell feeling, provided by the sodering and arrangement.
+
+# How to play the game ?
+
+The logic of the game put boards you on a spaceship armed with lasers and the goal tells you to destroy all the asteroids, without getting hit or letting anyone get past you. 
+You can either jump in the game or modify the difficulty for one that better represents your skill, but not before checking the highscores that already exist to know what you have to beat. 
+You have 3 lives and your score calculates by adding the three resulted scores. The goal is the obtain a score as high as possible.
+Moving is made by the joystick left and right and shooting from either left or right bezzel is made by pressing the coresponding on the right.
+    
+# Other game mechanics
+A new row of asteroids spawns every 1.5 seconds or faster with a random amount of asteroids, both depending on the difficulty. Missing asteroids is penalised for a short period of time, preventing you from shooting. Shooting and moving is posible.
+
+# Componets
+
+ * Arduino Nano
+ * Joystick
+ * Push buttons
+ * LCD 1602A-1 
+ * 8x8 LED matrix
+ * MAX7219 matrix driver
+ * PCB 70 * 140 mm
+ 
+# Code details
+
+The code is organised on 3 major parts: 
+* IO's management 
+* Game layering
+* Game implementation
+
+IO management consists of classes either build around existent, such as LiquidCrystal, on top of which extra functionalities were added for easing the use, either build to replace an exitent mechanic with drawbacks, such as MillisWait replacing the delay() function and sharing the functionality when used corectly or build to control a specific element, such as buttons or a joystick.
+
+Game layering consists the way the game was interpreted: as multiple entities with different behaviors but a common property, being a bit matrix. 
+
+Game implementation consists of using and organising all the parts above in convenient manner and mainly on states switching from one into another.
+
+
+# Demo
+
+
 	
-## Planuiesc sa includ urmatoarele jocuri:
-
-### 1 player:
-	Asteroid Storm	
-	Bricks Breaker
-	Car chase
-	Tetris		
-	Alien invasion	
-
-### 2 players:
-	Ping Pong 	
-	Ships voley
-	Space duel
-	Star catchers
-	TicTacToe
-
-### Rezerva:
-	Anti tetris 1p
-	Match the forms 2p
-	Snake 1p
-	Snake battle 2p
-
-	
-	
-	
-	
-	
-## Updates:
-
-### v0.1 - Initial commit
-    * Am importat clasele MillisWait, LeCeDe, JoiceStick, PushButton, Matrix8x8, SpaceShip, ShipLasers, Asteroids din proiectul ASteroidStorm 
-    * Urmeaza a fi modificate si adaptate pentru multifunctionalitate in mai multe jocuri
-
-### v0.2 - Working restructuration
-    * Modificarile din urma proiectului anterior au fost testate 
-    * Am rezolvat niste erori mici
-
-### v0.3 - Analog push buttons
-    * Creat clasa AlgPushButton pentru butoane ce sunt conectate la pinii analogici, astfel economisind pini digitali
-    * Exista 2 tipuri : 
-            -buton clasic, pentru care functia isPressed() returneaza true daca de la pin se citeste 1020 (sau valori peste 900)
-            -buton joystick, pentru care functia isPressed() returneaza true daca se citeste 0 (ori valori sub 10)
